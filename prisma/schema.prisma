@@ -1,0 +1,124 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CLIENT
+  STAFF
+  MANAGER
+  ADMIN
+  DEVELOPER
+}
+
+enum TicketStatus {
+  UNASSIGNED
+  TODO
+  IN_PROGRESS
+  HOLD
+  DONE
+  CANCELLED
+}
+
+enum NotificationChannel {
+  EMAIL
+  PUSH
+}
+
+model User {
+  id                      Int                       @id @default(autoincrement())
+  email                   String                    @unique
+  phone                   String?
+  password                String?
+  isBlocked               Boolean                   @default(false)
+  isEmailVerified         Boolean                   @default(false)
+  emailVerificationCode   String?
+  forgotPasswordCode      String?
+  name                    String
+  fcmToken                String?
+  avatar                  String?
+  role                    Role                      @default(CLIENT)
+  createdAt               DateTime                  @default(now())
+  updatedAt               DateTime                  @updatedAt
+  OrganizationUserProfile OrganizationUserProfile[]
+}
+
+model Organization {
+  id                      Int                       @id @default(autoincrement())
+  name                    String
+  isActive                Boolean                   @default(false)
+  createdAt               DateTime                  @default(now())
+  updatedAt               DateTime                  @updatedAt
+  OrganizationTicketType  OrganizationTicketType[]
+  OrganizationUserProfile OrganizationUserProfile[]
+  Notification            Notification[]
+}
+
+model OrganizationTicketType {
+  id             Int          @id @default(autoincrement())
+  ticketName     String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  organizationId Int
+  Ticket         Ticket[]
+}
+
+model OrganizationUserProfile {
+  id             Int          @id @default(autoincrement())
+  user           User         @relation(fields: [userId], references: [id])
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  role           Role         @default(CLIENT)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  userId         Int
+  organizationId Int
+}
+
+model Ticket {
+  id                       Int                    @id @default(autoincrement())
+  status                   TicketStatus           @default(UNASSIGNED)
+  subscribers              String[]
+  chat                     TicketChat[]
+  type                     OrganizationTicketType @relation(fields: [organizationTicketTypeId], references: [id])
+  updatedBy                String
+  createdBy                String
+  createdAt                DateTime               @default(now())
+  updatedAt                DateTime               @updatedAt
+  organizationTicketTypeId Int
+}
+
+model TicketChat {
+  id                  Int      @id @default(autoincrement())
+  text                String?
+  attachment          String[]
+  updatedBy           String //User Id
+  shouldNotifyOnEmail Boolean  @default(false)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  Ticket              Ticket?  @relation(fields: [ticketId], references: [id])
+  ticketId            Int?
+}
+
+model Notification {
+  id             Int                   @id @default(autoincrement())
+  channels       NotificationChannel[] @default([PUSH])
+  content        String?
+  image          String?
+  audience       String[]
+  eventType      String
+  organization   Organization          @relation(fields: [organizationId], references: [id])
+  createdAt      DateTime              @default(now())
+  updatedAt      DateTime              @updatedAt
+  organizationId Int
+}
