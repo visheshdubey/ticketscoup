@@ -7,18 +7,18 @@ export class EmailClient {
   private transporter: Transporter;
 
   private constructor(
-    config: nodemailer.TransportOptions | nodemailer.Transport | string
+    config: nodemailer.TransportOptions | nodemailer.Transport | string,
   ) {
     this.transporter = nodemailer.createTransport(config);
   }
 
   public static getInstance(
-    config?: nodemailer.TransportOptions | nodemailer.Transport | string
+    config?: nodemailer.TransportOptions | nodemailer.Transport | string,
   ): EmailClient {
     if (!EmailClient.instance) {
       if (!config) {
         throw new Error(
-          "EmailClient must be initialized with config first time"
+          "EmailClient must be initialized with config first time",
         );
       }
       EmailClient.instance = new EmailClient(config);
@@ -45,7 +45,7 @@ export class EmailClient {
     to: string | string[],
     subject: string,
     text?: string,
-    html?: string
+    html?: string,
   ): Promise<void> {
     const mailOptions: SendMailOptions = {
       to,
