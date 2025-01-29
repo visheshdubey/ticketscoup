@@ -1,8 +1,18 @@
-import { Button } from "@/components/ui/button";
+'use client';
+
+import { Button } from '@/components/ui/button';
+import { usePushNotification } from '@/lib/fcm';
+
 export default function Home() {
-  return (
-    <div>
-      <Button>Click me</Button>
-    </div>
-  );
+    const { setMuted, muted } = usePushNotification({
+        onMessage: (payload) => {
+            console.log(payload.title);
+        },
+    });
+
+    return (
+        <div>
+            <Button onClick={() => setMuted(!muted)}>{muted ? 'Unmute' : 'Mute'}</Button>
+        </div>
+    );
 }
