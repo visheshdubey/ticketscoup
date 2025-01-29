@@ -16,6 +16,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 
 export function NavMain({
@@ -34,33 +35,45 @@ export function NavMain({
   }[];
   groupLabel: string;
 }) {
+  const { open } = useSidebar();
+
   return (
-    <SidebarGroup>
+    <SidebarGroup
+      className={`${open ? "pl-[25px] pr-[22px]" : ""} font-satoshi`}
+    >
       <SidebarGroupLabel className="uppercase font-bold text-xs text-[#A09B96] leading-[17px]">
         {groupLabel}
       </SidebarGroupLabel>
-      <SidebarMenu>
+      <SidebarMenu className="pt-4 gap-1.5">
         {items.map((item) =>
           item.items && item.items.length > 0 ? (
             <Collapsible
               key={item.title}
               asChild
               defaultOpen={item.isActive}
-              className="group/collapsible"
+              className="group/collapsible data-[state=open]:border-l-0"
             >
               <SidebarMenuItem>
                 <CollapsibleTrigger asChild className="">
                   <SidebarMenuButton tooltip={item.title}>
                     <div className="flex [&>svg]:size-4 [&>svg]:shrink-0 space-x-4 items-center">
-                      {item.icon && <item.icon />}
+                      <div className="flex -ml-0.5">
+                        {item.icon && (
+                          <item.icon
+                            strokeWidth={1.75}
+                            width={20}
+                            height={20}
+                          />
+                        )}
+                      </div>
                       <span>{item.title}</span>
                     </div>
 
                     <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <SidebarMenuSub>
+                <CollapsibleContent className="overflow-hidden transition-all duration-300 data-[state=open]:animate-expand data-[state=closed]:animate-collapse">
+                  <SidebarMenuSub className="px-5 pt-3.5 border-l-0">
                     {item.items?.map((subItem) => (
                       <SidebarMenuSubItem key={subItem.title}>
                         <SidebarMenuSubButton asChild>
@@ -76,9 +89,17 @@ export function NavMain({
             </Collapsible>
           ) : (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild tooltip={item.title}>
+              <SidebarMenuButton
+                asChild
+                tooltip={item.title}
+                className="!p-[0.4rem]"
+              >
                 <a href={item.url} className="flex items-center space-x-2">
-                  {item.icon && <item.icon />}
+                  <div className="flex -ml-0.5">
+                    {item.icon && (
+                      <item.icon strokeWidth={1.75} width={20} height={20} />
+                    )}
+                  </div>
                   <span>{item.title}</span>
                 </a>
               </SidebarMenuButton>

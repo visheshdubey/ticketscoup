@@ -12,8 +12,10 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
+  SidebarGroup,
   SidebarHeader,
   SidebarRail,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { getMenuList } from "@/lib/menu-list";
 
@@ -23,7 +25,7 @@ const data = {
   user: {
     name: "VishalMadanCA",
     email: "vishalmadanCA@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "/company-logo.svg",
   },
   teams: [
     {
@@ -31,7 +33,7 @@ const data = {
       logo: () => (
         <Image src="/company-logo.svg" alt="My Icon" width={32} height={32} />
       ),
-      plan: "Enterprise",
+      plan: "Visit Site",
     },
     {
       name: "Acme Corp.",
@@ -47,9 +49,10 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { open } = useSidebar();
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
+      <SidebarHeader className={`pt-6 ${open ? "pl-[25px] pr-[22px]" : ""} font-satoshi`}>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
