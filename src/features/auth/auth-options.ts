@@ -1,88 +1,88 @@
-import { createUser, findUserByEmail } from "@/server/lib/db/user";
+import { createUser, findUserByEmail } from '@/server/lib/db/user';
 
-import { GithubAuth } from "@/features/auth/auth-providers/github";
-import { NextAuthConfig } from "next-auth";
+import { GithubAuth } from '@/features/auth/auth-providers/github';
+import { NextAuthConfig } from 'next-auth';
 
 export const authOptions: NextAuthConfig = {
-  // providers: [GoogleAuth, GithubAuth],
-  providers: [GithubAuth],
-  secret: process.env.AUTH_SECRET,
+    // providers: [GoogleAuth, GithubAuth],
+    providers: [GithubAuth],
+    secret: process.env.AUTH_SECRET,
 
-  session: {
-    strategy: "jwt",
-  },
-
-  callbacks: {
-    async signIn({ user, account, profile }) {
-      if (!user.email) {
-        return false;
-      }
-
-      try {
-        let dbUser = await findUserByEmail(user.email);
-
-        if (!dbUser) {
-          dbUser = await createUser({
-            email: user.email,
-            provider: account?.provider,
-            avatar: user.image,
-            name: user.name,
-          });
-        }
-
-        return true;
-      } catch (error) {
-        console.error("SignIn Error:", error);
-        return false;
-      }
+    session: {
+        strategy: 'jwt',
     },
 
-    async jwt({ token, user, account, trigger, session }) {
-      if (account && user) {
-        token.id = user.id;
+    callbacks: {
+        async signIn({ user, account, profile }) {
+            if (!user.email) {
+                return false;
+            }
 
-        return token;
-      }
+            try {
+                let dbUser = await findUserByEmail(user.email);
 
-      if (trigger === "update" && session) {
-        token = { ...token, ...session };
+                if (!dbUser) {
+                    dbUser = await createUser({
+                        email: user.email,
+                        provider: account?.provider,
+                        avatar: user.image,
+                        name: user.name,
+                    });
+                }
 
-        return token;
-      }
+                return true;
+            } catch (error) {
+                console.error('SignIn Error:', error);
+                return false;
+            }
+        },
 
-      if (!token.email) {
-        return token;
-      }
+        async jwt({ token, user, account, trigger, session }) {
+            if (account && user) {
+                token.id = user.id;
 
-      const dbUser = await findUserByEmail(token.email);
+                return token;
+            }
 
-      if (!dbUser) {
-        return token;
-      }
+            if (trigger === 'update' && session) {
+                token = { ...token, ...session };
 
-      return {
-        ...token,
-        id: dbUser.id,
-        email: dbUser.email,
-        // providers: dbUser.provider,
-      };
+                return token;
+            }
+
+            if (!token.email) {
+                return token;
+            }
+
+            const dbUser = await findUserByEmail(token.email);
+
+            if (!dbUser) {
+                return token;
+            }
+
+            return {
+                ...token,
+                id: dbUser.id,
+                email: dbUser.email,
+                // providers: dbUser.provider,
+            };
+        },
+
+        async session({ session, token }) {
+            if (session.user) {
+                session.user.token = token;
+            }
+
+            return session;
+        },
     },
 
-    async session({ session, token }) {
-      if (session.user) {
-        session.user.token = token;
-      }
-
-      return session;
+    pages: {
+        signIn: '/signin',
+        error: '/auth/error',
     },
-  },
 
-  pages: {
-    signIn: "/signin",
-    error: "/auth/error",
-  },
-
-  debug: process.env.NODE_ENV === "development",
+    debug: process.env.NODE_ENV === 'development',
 };
 
 export default authOptions;
