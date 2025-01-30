@@ -5,16 +5,14 @@ import { AudioWaveform, Command } from "lucide-react";
 
 import Image from "next/image";
 
-import { NavMain } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
-import { TeamSwitcher } from "@/components/team-switcher";
+import { NavMain } from "@/fetaures/dashboard/comps/nav-main";
+import { NavUser } from "@/fetaures/dashboard/comps/nav-user";
+import { TeamSwitcher } from "@/fetaures/dashboard/comps/team-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarGroup,
   SidebarHeader,
-  SidebarRail,
   useSidebar,
 } from "@/components/ui/sidebar";
 import { getMenuList } from "@/lib/menu-list";
@@ -61,7 +59,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
-      <SidebarRail />
     </Sidebar>
   );
 }
