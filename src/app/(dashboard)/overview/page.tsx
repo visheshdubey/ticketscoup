@@ -1,12 +1,33 @@
+"use client";
+
+import Card from "@/fetaures/dashboard/comps/card";
+import { widgets } from "@/fetaures/dashboard/lib/widgetsdata";
+
 export default function Page() {
   return (
-    <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-      <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-        <div className="aspect-video rounded-xl bg-muted/50" />
-        <div className="aspect-video rounded-xl bg-muted/50" />
-        <div className="aspect-video rounded-xl bg-muted/50" />
+    <>
+      <div className="bg-white h-full flex flex-col px-9 pt-2">
+        <div className="flex gap-5">
+          <span className="font-satoshi font-medium text-2xl leading-[34px] text-stone-950">
+            Overview
+          </span>
+
+          <div className=""></div>
+        </div>
+
+        <div className="grid auto-rows-min md:grid-cols-4 pt-6 gap-6 px">
+          {widgets.map((widget, index) => (
+            <div
+              key={widget.title}
+              className={`rounded-[20px] ${
+                index % 2 == 0 ? "bg-[#E2EFFD]" : "bg-[#EAECFC]"
+              }`}
+            >
+              <Card info={widget} />
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
-    </div>
+    </>
   );
 }

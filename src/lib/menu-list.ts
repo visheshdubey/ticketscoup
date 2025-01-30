@@ -6,7 +6,7 @@ export function getMenuList(pathname: string) {
     items: [
       {
         title: "Overview",
-        url: "#",
+        url: "/overview",
         icon: House,
       },
       {

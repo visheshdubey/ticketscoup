@@ -22,7 +22,7 @@ export default function AppHeader({ hasNotifications }: AppHeaderProps) {
         style={{
           padding: "1.5rem 2.25rem",
         }}
-        className="flex bg-white rounded-tl-[20px] px-9 py-6 rounded-l-[20px] h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12"
+        className="flex bg-white rounded-tl-[20px] px-9 py-6 h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12"
       >
         <div
           style={{ justifyContent: "space-between" }}
@@ -71,7 +71,7 @@ export default function AppHeader({ hasNotifications }: AppHeaderProps) {
             </div>
 
             <div
-              style={{backgroundColor:"gray"}}
+              style={{ backgroundColor: "gray" }}
               className="flex items-center bg-slate-800 aspect-square h-9 w-9 rounded-full shrink-0 grow-0 hover:cursor-pointer "
             ></div>
           </div>

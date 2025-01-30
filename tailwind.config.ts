@@ -71,6 +71,7 @@ export default {
       },
       fontFamily: {
         satoshi: ["var(--font-satoshi-variable)"],
+        clashGrotesk: ["var(--font-clash-grotesk-variable)"],
       },
     },
   },
