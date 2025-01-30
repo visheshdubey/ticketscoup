@@ -3,3 +3,7 @@ export type CardInfo = {
   value: string;
   growth: string;
 };
+
+export interface WidgetCardProps {
+  info: CardInfo;
+}
