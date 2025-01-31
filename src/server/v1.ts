@@ -15,7 +15,7 @@ app.post('/signin/magic', async (c) => {
     const payload = {
         email,
     };
-    const secret = process.env.AUTH_SECRET as string;
+    const secret = process.env.AUTH_SECRET;
     const token = jwt.sign(payload, secret, { expiresIn: MAGIC_LINK_TOKEN_EXPIRY });
 
     await emailClient.send(EmailTemplateMagicLink({ to: email, token }));
