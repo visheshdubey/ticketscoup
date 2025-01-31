@@ -15,7 +15,7 @@ const MagicLinkPage = (props: Props) => {
             return;
         }
 
-        signIn('credentials', { token });
+        signIn('credentials', { token, redirectTo: '/' });
     };
 
     useEffect(() => {
