@@ -7,7 +7,7 @@ export const dbUserFindByEmail = async (email: string) => {
     return user;
 };
 
-export const dbUserCreate = async (user: any) => {
+export const dbUserCreate = async (user: { email: string; name?: string }) => {
     const newUser = await prisma.user.create({
         data: {
             email: user.email,
@@ -18,4 +18,14 @@ export const dbUserCreate = async (user: any) => {
     return newUser;
 };
 
-export const dbUserUpsert = async (user: any) => {};
+export const dbUserUpsertAndFetch = async (user: { email: string; name?: string }) => {
+    const dbUser = await dbUserFindByEmail(user.email);
+
+    if (dbUser) {
+        return dbUser;
+    }
+
+    const newUser = await dbUserCreate(user);
+
+    return newUser;
+};
