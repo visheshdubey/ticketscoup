@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import { handle } from 'hono/vercel';
 import v1 from '@/server/v1';
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 const app = new Hono().basePath('/api');
 const routes = app.route('/v1', v1);

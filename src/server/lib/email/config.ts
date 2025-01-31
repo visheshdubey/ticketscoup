@@ -1,11 +1,10 @@
-const emailConfig = {
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT || '587'),
-    secure: process.env.SMTP_SECURE === 'true',
-    auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
-    },
-};
+import { NodemailerSingleton } from './NodeMailerClient';
 
-export default emailConfig;
+const client = NodemailerSingleton.getInstance({
+    auth: { user: process.env.SMTP_USER || '', pass: process.env.SMTP_PASSWORD || '' },
+    host: process.env.SMTP_HOST || '',
+    port: parseInt(process.env.SMTP_PORT || '0'),
+    secure: false,
+});
+
+export default client;
