@@ -29,20 +29,24 @@ export const authOptions: NextAuthConfig = {
                 return false;
             }
         },
-        //TODO: Need to update this, as the DB schema has changed
+
         async jwt({ token, user, account, trigger, session }) {
+            /**
+             * If account and user are present, it means this is the initial sign-in. The callback adds the user's ID to the token.
+             */
+            // Initial sign-in
             if (account && user) {
                 token.id = user.id;
-
                 return token;
             }
 
+            // Token update
             if (trigger === 'update' && session) {
                 token = { ...token, ...session };
-
                 return token;
             }
 
+            // Token validation
             if (!token.email) {
                 return token;
             }
@@ -53,6 +57,7 @@ export const authOptions: NextAuthConfig = {
                 return token;
             }
 
+            // Update token with user details from the database
             return {
                 ...token,
                 id: dbUser.id,
@@ -60,7 +65,7 @@ export const authOptions: NextAuthConfig = {
                 providers: dbUser.provider,
             };
         },
-        //TODO: Need to update this, as the DB schema has changed
+
         async session({ session, token }) {
             if (session.user) {
                 session.user.token = token;
