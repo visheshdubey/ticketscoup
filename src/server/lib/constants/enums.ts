@@ -1,0 +1,1 @@
+export const MAGIC_LINK_TOKEN_EXPIRY = '15m'
