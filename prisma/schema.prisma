@@ -22,7 +22,6 @@ enum Role {
 }
 
 enum TicketStatus {
-    UNASSIGNED
     TODO
     IN_PROGRESS
     HOLD
@@ -38,19 +37,18 @@ enum NotificationChannel {
 model User {
     id                      Int                       @id @default(autoincrement())
     email                   String                    @unique
+    name                    String?
     phone                   String?
-    password                String?
+    provider                String?
     isBlocked               Boolean                   @default(false)
     isEmailVerified         Boolean                   @default(false)
-    emailVerificationCode   String?
-    forgotPasswordCode      String?
-    name                    String
     fcmToken                String?
     avatar                  String?
     role                    Role                      @default(CLIENT)
     createdAt               DateTime                  @default(now())
     updatedAt               DateTime                  @updatedAt
     OrganizationUserProfile OrganizationUserProfile[]
+    Ticket                  Ticket[]
 }
 
 model Organization {
@@ -87,7 +85,8 @@ model OrganizationUserProfile {
 
 model Ticket {
     id                       Int                    @id @default(autoincrement())
-    status                   TicketStatus           @default(UNASSIGNED)
+    status                   TicketStatus           @default(TODO)
+    assignedTo               User?                  @relation(fields: [userId], references: [id])
     subscribers              String[]
     chat                     TicketChat[]
     type                     OrganizationTicketType @relation(fields: [organizationTicketTypeId], references: [id])
@@ -96,6 +95,7 @@ model Ticket {
     createdAt                DateTime               @default(now())
     updatedAt                DateTime               @updatedAt
     organizationTicketTypeId Int
+    userId                   Int?
 }
 
 model TicketChat {

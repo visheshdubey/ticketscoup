@@ -1,6 +1,7 @@
 import jwt, { JWTPayload } from 'jsonwebtoken';
 
 import Credentials from 'next-auth/providers/credentials';
+import { dbUserUpsertAndFetch } from '@/server/lib/db/user';
 
 export const CredentialAuth = Credentials({
     credentials: {
@@ -14,9 +15,10 @@ export const CredentialAuth = Credentials({
             return null;
         }
 
-        //TODO: Here we have to check if the user is in the database, if not then we have to create the user
-        if (decodedToken.email === 'visheshdubey2016@gmail.com') {
-            return { email: decodedToken.email };
+        const user = await dbUserUpsertAndFetch({ email: decodedToken.email });
+
+        if (user) {
+            return { email: user.email };
         }
 
         return null;
