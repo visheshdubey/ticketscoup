@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { ProvidersType } from '@/features/auth/next-auth';
+import { ProvidersType } from '@/features/auth/types/next-auth';
 import SignInForm from '@/features/auth/components/SignInForm';
 import { apiClient } from '@/lib/api-client';
 import { getProviders } from 'next-auth/react';

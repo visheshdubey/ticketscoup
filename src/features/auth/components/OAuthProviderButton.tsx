@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import ProviderIcon from '@/features/auth/components/ProviderIcon';
-import { ProvidersType } from '../next-auth';
+import { ProvidersType } from '../types/next-auth';
 import { signIn } from 'next-auth/react';
 
 type OAuthProviderButtonProps = {

@@ -1,7 +1,7 @@
 'use client';
 
 import OAuthProviderButton from '@/features/auth/components/OAuthProviderButton';
-import { ProvidersType } from '../next-auth';
+import { ProvidersType } from '../types/next-auth';
 
 type Props = {
     providers: ProvidersType | null;
