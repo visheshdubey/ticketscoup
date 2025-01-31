@@ -1,5 +1,6 @@
-import { dbUserCreate, dbUserFindByEmail } from '@/server/lib/db/user';
+import { dbUserFindByEmail, dbUserUpsertAndFetch } from '@/server/lib/db/user';
 
+import { AuthProvider } from '@/server/lib/constants/enums';
 import { CredentialAuth } from './auth-providers/credentials';
 import { GithubAuth } from '@/features/auth/auth-providers/github';
 import { NextAuthConfig } from 'next-auth';
@@ -12,28 +13,19 @@ export const authOptions: NextAuthConfig = {
     session: {
         strategy: 'jwt',
     },
-    //TODO: Need to update this, as the DB schema has changed
+
     callbacks: {
         async signIn({ user, account, profile }) {
-            if (!user.email) {
-                return false;
-            }
-
             try {
-                let dbUser = await dbUserFindByEmail(user.email);
-
-                if (!dbUser) {
-                    dbUser = await dbUserCreate({
-                        email: user.email,
-                        provider: account?.provider,
-                        avatar: user.image,
-                        name: user.name,
-                    });
+                if (!user.email) {
+                    return false;
                 }
+
+                await dbUserUpsertAndFetch({ email: user.email, name: user.name, provider: AuthProvider.UNKNOWN });
 
                 return true;
             } catch (error) {
-                console.error('SignIn Error:', error);
+                console.error('~ auth-options.ts signin error', error);
                 return false;
             }
         },
@@ -65,7 +57,7 @@ export const authOptions: NextAuthConfig = {
                 ...token,
                 id: dbUser.id,
                 email: dbUser.email,
-                // providers: dbUser.provider,
+                providers: dbUser.provider,
             };
         },
         //TODO: Need to update this, as the DB schema has changed

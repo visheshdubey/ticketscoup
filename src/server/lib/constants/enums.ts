@@ -1,6 +1,7 @@
 export const MAGIC_LINK_TOKEN_EXPIRY = '15m';
 
 export enum AuthProvider {
-    MAGIC_LINK = 0,
+    UNKNOWN = 0,
+    MAGIC_LINK,
     GITHUB,
 }
