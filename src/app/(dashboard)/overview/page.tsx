@@ -1,7 +1,7 @@
 "use client";
 
-import Card from "@/fetaures/dashboard/comps/card";
-import { widgets } from "@/fetaures/dashboard/lib/widgetsdata";
+import Card from "@/features/dashboard/comps/card";
+import { widgets } from "@/features/dashboard/lib/widgetsdata";
 
 export default function Page() {
   return (

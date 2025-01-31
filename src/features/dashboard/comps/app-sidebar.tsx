@@ -5,9 +5,9 @@ import { AudioWaveform, Command } from "lucide-react";
 
 import Image from "next/image";
 
-import { NavMain } from "@/fetaures/dashboard/comps/nav-main";
-import { NavUser } from "@/fetaures/dashboard/comps/nav-user";
-import { TeamSwitcher } from "@/fetaures/dashboard/comps/team-switcher";
+import { NavMain } from "@/features/dashboard/comps/nav-main";
+import { NavUser } from "@/features/dashboard/comps/nav-user";
+import { TeamSwitcher } from "@/features/dashboard/comps/team-switcher";
 import {
   Sidebar,
   SidebarContent,

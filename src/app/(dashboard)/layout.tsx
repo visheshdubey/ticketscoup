@@ -1,8 +1,8 @@
 "use client";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
-import { AppSidebar } from "@/fetaures/dashboard/comps/app-sidebar";
-import AppHeader from "@/fetaures/dashboard/comps/app-header";
+import { AppSidebar } from "@/features/dashboard/comps/app-sidebar";
+import AppHeader from "@/features/dashboard/comps/app-header";
 import { useState } from "react";
 
 export default function DashboardLayout({
