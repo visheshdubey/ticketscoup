@@ -10,6 +10,10 @@ app.get('/', (c) => {
     return c.text('Hello World');
 });
 
+app.post('/fcm', (c) => {
+    return c.json({ data: 'FCM token updated successfully!' });
+});
+
 app.post('/signin/magic', async (c) => {
     const { email } = await c.req.json();
     const payload = {
