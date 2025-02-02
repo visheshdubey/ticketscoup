@@ -40,7 +40,7 @@ export const dbTeamListTicketTypes = ({ teamId }: { teamId: string }) => {
     });
 };
 
-export const dbTeamGetTicketById = ({ ticketTypeId }: { ticketTypeId: string }) => {
+export const dbTeamGetTicketTypeById = ({ ticketTypeId }: { ticketTypeId: string }) => {
     return prisma.teamTicketType.findUnique({
         where: {
             id: parseInt(ticketTypeId),
