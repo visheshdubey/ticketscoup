@@ -59,6 +59,10 @@ export default {
                 md: 'calc(var(--radius) - 2px)',
                 sm: 'calc(var(--radius) - 4px)',
             },
+            fontFamily: {
+                satoshi: ['var(--font-satoshi-variable)'],
+                clashGrotesk: ['var(--font-clash-grotesk-variable)'],
+            },
         },
     },
     plugins: [require('tailwindcss-animate')],
