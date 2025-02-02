@@ -27,7 +27,7 @@ const SigninPage = (props: Props) => {
     };
     return (
         <main className="h-[calc(100vh_-_64px_-_10vh)] flex flex-col gap-12">
-            <SignInForm providers={providers} />
+            <SignInForm providers={providers} email={email} setEmail={setEmail} handleSubmit={handleSubmit} />
         </main>
     );
 };

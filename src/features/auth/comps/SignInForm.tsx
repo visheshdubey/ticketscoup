@@ -8,13 +8,16 @@ import { Button } from '@/components/ui/button';
 
 type Props = {
     providers: ProvidersType | null;
+    email: string;
+    setEmail: React.Dispatch<React.SetStateAction<string>>;
+    handleSubmit: () => {};
 };
 
-const SignInForm = ({ providers }: Props) => {
+const SignInForm = ({ providers, email, setEmail, handleSubmit }: Props) => {
     return (
         <>
-            <div className="flex md:max-w-[1024px] flex-col mx-auto px-4 pt-[27px] grow w-full items-start justify-start">
-                <span className="font-clashGrotesk font-semibold text-2xl leading-[29px] text-[#0057CC]">
+            <div className="hidden md:flex md:max-w-[1024px] flex-col mx-auto px-4 pt-[27px] grow w-full items-start justify-start">
+                <span className="font-clashGrotesk font-semibold text-base leading-[19px] text-[#0057CC]">
                     Ticketscoup
                 </span>
             </div>
@@ -41,11 +44,14 @@ const SignInForm = ({ providers }: Props) => {
                         <input
                             type="email"
                             required
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             className="px-5 py-[7px] border border-[#DEE5EE] rounded-md"
                             placeholder="m@example.com"
                         />
                         <Button
                             variant={'default'}
+                            onClick={handleSubmit}
                             className="border flex items-center border-[#DEE5EE] rounded-md shadow-none px-5 py-5 bg-white mt-2 text-[#050C16] hover:bg-[#0057CC] hover:text-white"
                         >
                             Continue with Email
