@@ -33,7 +33,10 @@ body {
         --chart-4: 43 74% 66%;
         --chart-5: 27 87% 67%;
         --radius: 0.5rem;
+        --font-satoshi-variable: "Satoshi Variable", sans-serif;
+        --font-clash-grotesk-variable: "Clash Grotesk Variable", sans-serif;
     }
+
     .dark {
         --background: 0 0% 3.9%;
         --foreground: 0 0% 98%;
@@ -66,6 +69,7 @@ body {
     * {
         @apply border-border;
     }
+
     body {
         @apply bg-background text-foreground;
     }
