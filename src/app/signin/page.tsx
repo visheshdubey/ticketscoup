@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import { ProvidersType } from '@/features/auth/types/next-auth';
-import SignInForm from '@/features/auth/components/SignInForm';
+import SignInForm from '@/features/auth/comps/SignInForm';
 import { apiClient } from '@/lib/api-client';
 import { getProviders } from 'next-auth/react';
 
@@ -27,13 +27,6 @@ const SigninPage = (props: Props) => {
     };
     return (
         <main className="h-[calc(100vh_-_64px_-_10vh)] flex flex-col gap-12">
-            <input
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                className="border border-red-500"
-            />
-            <button onClick={handleSubmit}>Click</button>
             <SignInForm providers={providers} />
         </main>
     );
