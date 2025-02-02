@@ -1,6 +1,8 @@
 import prisma from './prisma';
 
-export const dbTeamCreate = () => {};
+export const dbTeamCreate = () => {
+    //TODO: Use this in seed.ts
+};
 
 export const dbTeamCreateTicketType = ({ title, teamId }: { title: string; teamId: string }) => {
     return prisma.teamTicketType.create({
