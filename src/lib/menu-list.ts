@@ -11,17 +11,17 @@ export function getMenuList(pathname: string) {
       },
       {
         title: "Tickets",
-        url: "#",
+        url: "/tickets",
         icon: Store,
       },
       {
         title: "Clients",
-        url: "#",
+        url: "/clients",
         icon: Users,
       },
       {
         title: "Staff",
-        url: "#",
+        url: "/staff",
         icon: Contact,
       },
       {
@@ -31,7 +31,6 @@ export function getMenuList(pathname: string) {
       },
       {
         title: "Settings",
-        url: "#",
         icon: Settings,
         items: [
           {

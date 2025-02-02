@@ -18,6 +18,9 @@ import {
   SidebarMenuSubItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { usePathname } from "next/navigation";
+import { sidebarElementsMap } from "../lib/mapper";
+import { PageKey } from "../types/types";
 
 export function NavMain({
   items,
@@ -25,7 +28,7 @@ export function NavMain({
 }: {
   items: {
     title: string;
-    url: string;
+    url?: string;
     icon?: LucideIcon;
     isActive?: boolean;
     items?: {
@@ -36,6 +39,8 @@ export function NavMain({
   groupLabel: string;
 }) {
   const { open } = useSidebar();
+
+  const selectedItem = sidebarElementsMap[usePathname().slice(1) as PageKey];
 
   return (
     <SidebarGroup
@@ -94,7 +99,12 @@ export function NavMain({
                 tooltip={item.title}
                 className="!p-[0.4rem]"
               >
-                <a href={item.url} className="flex items-center space-x-2">
+                <a
+                  href={item.url}
+                  className={`flex items-center space-x-2 ${
+                    selectedItem === item.title ? "text-white" : ""
+                  }`}
+                >
                   <div className="flex -ml-0.5">
                     {item.icon && (
                       <item.icon strokeWidth={1.75} width={20} height={20} />
