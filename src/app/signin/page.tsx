@@ -21,7 +21,7 @@ const SigninPage = (props: Props) => {
     }, []);
 
     const handleSubmit = async () => {
-        const res = await apiClient.post({ path: '/signin/magic', data: { email } });
+        const res = await apiClient.post({ path: '/api/signin/magic-link', data: { email } });
 
         alert(res.data);
     };
