@@ -11,22 +11,31 @@
         "pretty": "npx prettier . --write"
     },
     "dependencies": {
+        "@hono/node-server": "^1.13.8",
+        "@hono/zod-openapi": "^0.18.3",
+        "@hono/zod-validator": "^0.4.2",
         "@prisma/client": "^6.2.1",
         "@radix-ui/react-slot": "^1.1.1",
+        "@scalar/hono-api-reference": "^0.5.170",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "firebase": "^11.2.0",
         "hono": "^4.6.18",
+        "hono-openapi": "^0.4.4",
+        "hono-pino": "^0.7.0",
         "jsonwebtoken": "^9.0.2",
         "lucide-react": "^0.471.1",
         "next": "15.1.4",
         "next-auth": "^5.0.0-beta.25",
         "nodemailer": "^6.10.0",
+        "pino-pretty": "^13.0.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
+        "stoker": "^1.4.2",
         "tailwind-merge": "^2.6.0",
         "tailwindcss-animate": "^1.0.7",
-        "zod": "^3.24.1"
+        "zod": "^3.24.1",
+        "zod-openapi": "^4.2.3"
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3",

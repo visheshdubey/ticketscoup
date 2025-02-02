@@ -7,6 +7,7 @@ import { FCM_BROADCAST_CHANNEL } from './lib/constants';
 import { NotificationMessage } from './types/NotificationMessage';
 import { isServiceWorkerInNavigator } from './lib/isServiceWorkerInNavigator';
 import useNotificationSound from './lib/useNotificationSound';
+import { useSendFcmTokenToServer } from './lib/useSendFcmTokenToServer';
 
 type PushNotificationProviderProps = {
     config: FCMClientConfig;
@@ -61,6 +62,7 @@ export const usePushNotification = ({
 const PushNotificationProvider = ({ children, config }: PushNotificationProviderProps) => {
     const [message, setMessage] = useState<NotificationMessage | null>(null);
     const [muted, setMuted] = useState(false);
+    const sendFCMTokenToServer = useSendFcmTokenToServer({ path: 'api/notification/register-fcm' });
 
     let fcmClient: FCMClient | null = null;
 
@@ -79,6 +81,12 @@ const PushNotificationProvider = ({ children, config }: PushNotificationProvider
             await fcmClient.registerServiceWorker();
             await fcmClient.requestPermission();
             await fcmClient.getToken();
+
+            if (fcmClient.fcmToken) {
+                sendFCMTokenToServer(fcmClient.fcmToken);
+            } else {
+                console.error('FCM token not found');
+            }
         } catch (error) {
             console.error('Error initializing FCM', error);
         }
