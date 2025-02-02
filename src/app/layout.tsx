@@ -1,7 +1,7 @@
 import './globals.css';
 
 import { Geist, Geist_Mono } from 'next/font/google';
-
+import localFont from 'next/font/local';
 import type { Metadata } from 'next';
 import NotificationProvider from '@/components/providers/NotificationProvider';
 
@@ -13,6 +13,16 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
     variable: '--font-geist-mono',
     subsets: ['latin'],
+});
+
+const satoshiVariable = localFont({
+    src: '../../public/assets/font/Satoshi-Variable.ttf',
+    variable: '--font-satoshi-variable',
+});
+
+const clashGroteskVariable = localFont({
+    src: '../../public/assets/font/ClashGrotesk-Variable.ttf',
+    variable: '--font-clash-grotesk-variable',
 });
 
 export const metadata: Metadata = {
@@ -27,7 +37,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+            <body className={`${geistSans.variable} ${geistMono.variable} ${satoshiVariable.variable} ${clashGroteskVariable.variable} antialiased`}>
                 <NotificationProvider>{children}</NotificationProvider>
             </body>
         </html>
