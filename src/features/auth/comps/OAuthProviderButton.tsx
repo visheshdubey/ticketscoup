@@ -12,7 +12,7 @@ type OAuthProviderButtonProps = {
 
 const OAuthProviderButton = ({ provider, className = '' }: OAuthProviderButtonProps) => {
     return (
-        <div className="mb-2  w-full">
+        <div className="w-full">
             <Button
                 onClick={() => signIn(provider.id)}
                 className={`h-11 flex bg-[#050C16] hover:bg-[#2c2c2c] hover:text-white rounded-md py-2 justify-center gap-2 items-center text-white  w-full ${className}`}
