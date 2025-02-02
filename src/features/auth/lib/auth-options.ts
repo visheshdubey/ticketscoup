@@ -1,7 +1,7 @@
 import { dbUserFindByEmail, dbUserUpsertAndFetch } from '@/server/lib/db/user';
 
 import { AuthProvider } from '@/server/lib/constants/enums';
-import { CredentialAuth } from './auth-providers/credentials';
+import { CredentialAuth } from '../auth-providers/credentials';
 import { GithubAuth } from '@/features/auth/auth-providers/github';
 import { NextAuthConfig } from 'next-auth';
 
