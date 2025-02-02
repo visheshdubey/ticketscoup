@@ -1,13 +1,14 @@
 import auth from '@/server/routes/auth/index.auth';
 import configureOpenAPI from '@/server/lib/openapi/configure-openapi';
 import createApp from '@/server/lib/create-app';
+import notification from '@/server/routes/notification/notification.index';
 import routeIndex from '@/server/routes/index.routes';
 
 const app = createApp();
 
 configureOpenAPI(app);
 
-const routes = [routeIndex, auth] as const;
+const routes = [routeIndex, auth, notification] as const;
 
 routes.forEach((route) => {
     app.route('/', route);

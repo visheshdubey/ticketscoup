@@ -9,14 +9,14 @@ export default function configureOpenAPI(app: AppOpenAPI) {
         openapi: '3.0.0',
         info: {
             version: packageJSON.version,
-            title: 'Tasks API',
+            title: 'TicketScoup API',
         },
     });
 
     app.get(
         '/reference',
         apiReference({
-            theme: 'kepler',
+            theme: 'bluePlanet',
             layout: 'classic',
             defaultHttpClient: {
                 targetKey: 'javascript',
@@ -25,6 +25,7 @@ export default function configureOpenAPI(app: AppOpenAPI) {
             spec: {
                 url: '/api/doc',
             },
+            pageTitle: 'Ticketscoup API Documentation',
         })
     );
 }

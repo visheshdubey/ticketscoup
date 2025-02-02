@@ -62,7 +62,7 @@ export const usePushNotification = ({
 const PushNotificationProvider = ({ children, config }: PushNotificationProviderProps) => {
     const [message, setMessage] = useState<NotificationMessage | null>(null);
     const [muted, setMuted] = useState(false);
-    const sendFCMTokenToServer = useSendFcmTokenToServer({ path: 'api/v1/fcm' });
+    const sendFCMTokenToServer = useSendFcmTokenToServer({ path: 'api/notification/register-fcm' });
 
     let fcmClient: FCMClient | null = null;
 
