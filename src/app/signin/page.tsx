@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from 'react';
 
+import { AppType } from '@/server/app';
 import { ProvidersType } from '@/features/auth/types/next-auth';
 import SignInForm from '@/features/auth/comps/SignInForm';
-import { apiClient } from '@/lib/api-client';
 import { getProviders } from 'next-auth/react';
+import { hc } from 'hono/client';
 
 type Props = {};
 
@@ -21,10 +22,11 @@ const SigninPage = (props: Props) => {
     }, []);
 
     const handleSubmit = async () => {
-        const res = await apiClient.post({ path: '/api/signin/magic-link', data: { email } });
-
-        alert(res.data);
+        const client = hc<AppType>(process.env.BASE_URL);
+        const res = await client.api.signin['magic-link'].$post({ json: { email } });
+        const data = await res.json();
     };
+
     return (
         <main className="h-[calc(100vh_-_64px_-_10vh)] flex flex-col gap-12">
             <SignInForm providers={providers} email={email} setEmail={setEmail} handleSubmit={handleSubmit} />
