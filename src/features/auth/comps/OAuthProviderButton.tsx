@@ -15,10 +15,10 @@ const OAuthProviderButton = ({ provider, className = '' }: OAuthProviderButtonPr
         <div className="w-full">
             <Button
                 onClick={() => signIn(provider.id)}
-                className={`h-11 flex bg-[#050C16] hover:bg-[#2c2c2c] hover:text-white rounded-md py-2 justify-center gap-2 items-center text-white  w-full ${className}`}
+                className={`h-9 flex rounded-md py-2 justify-center gap-2 items-center text-white  w-full ${className}`}
                 variant="outline"
             >
-                <ProviderIcon provider={provider.id} className='w-[18px] h-[18px]'/>
+                <ProviderIcon provider={provider.id} className="w-[18px] h-[18px]" />
                 <span>Continue with {provider.name}</span>
             </Button>
         </div>
