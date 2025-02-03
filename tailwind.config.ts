@@ -63,6 +63,12 @@ export default {
                 satoshi: ['var(--font-satoshi-variable)'],
                 clashGrotesk: ['var(--font-clash-grotesk-variable)'],
             },
+            height: {
+                '4.5': '1.125rem', // 18px
+            },
+            width: {
+                '4.5': '1.125rem', //18px
+            },
         },
     },
     plugins: [require('tailwindcss-animate')],
