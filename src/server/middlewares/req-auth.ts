@@ -22,9 +22,16 @@ export const authMiddleware = createMiddleware<AuthMiddleware>(async (c, next) =
     const decodedSessionToken = await decode({
         token: authSessionToken,
         secret: process.env.AUTH_SECRET,
-        salt: 'authjs.session-token',
+        salt: COOKIE_NAME_AUTH_JS_SESSION_TOKEN,
     });
-    const user = await dbUserFindByEmail(get(decodedSessionToken, 'email'));
+
+    // TODO: Needs refactoring for Vishesh
+    const userEmail = get(decodedSessionToken, 'email');
+    if (!userEmail) {
+        await next();
+        return;
+    }
+    const user = await dbUserFindByEmail(userEmail);
 
     c.set('user', { id: get(user, 'id'), name: get(user, 'email'), role: get(user, 'role') });
 
