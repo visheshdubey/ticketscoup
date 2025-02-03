@@ -2,7 +2,10 @@ import { z } from 'zod';
 
 const envSchema = z.object({
     NODE_ENV: z.enum(['development', 'production', 'test']).optional(),
-    PORT: z.coerce.number().default(8080),
+    BASE_URL: z.string(),
+    DEFAULT_TEAM_NAME: z.string(),
+    DEFAULT_TEAM_DEVELOPER_USER_EMAIL: z.string(),
+    DEFAULT_TEAM_DEVELOPER_USER_NAME: z.string(),
     DATABASE_URL: z.string(),
     EMAIL_SERVER: z.string(),
     EMAIL_FROM: z.string(),
@@ -25,6 +28,9 @@ const envSchema = z.object({
     NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: z.string(),
     NEXT_PUBLIC_FIREBASE_VAPID_PUBLIC_KEY: z.string(),
     NEXT_PUBLIC_FIREBASE_VAPID_PRIVATE_KEY: z.string(),
+    BUNNY_API_KEY: z.string(),
+    BUNNY_STORAGE_ZONE: z.string(),
+    BUNNY_HOSTNAME: z.string(),
 });
 
 export const validateEnv = () => envSchema.safeParse(process.env);

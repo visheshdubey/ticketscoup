@@ -1,4 +1,5 @@
 import { ZodIssue } from 'zod';
+import { seedDB } from './server/lib/db/seed';
 import { validateEnv } from '@/config/env';
 
 const constructEnvErrorMessages = (errors: ZodIssue[]): string[] => {
@@ -18,6 +19,10 @@ export async function register() {
         }
 
         console.info(' ✓ env loaded successfully');
+
+        await seedDB();
+
+        console.info(' ✓ DB seeded successfully');
     } catch (e: any) {
         throw new Error(`\n\n Error loading env:\n${e.message}\n`);
     }
