@@ -28,6 +28,9 @@ const envSchema = z.object({
     NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: z.string(),
     NEXT_PUBLIC_FIREBASE_VAPID_PUBLIC_KEY: z.string(),
     NEXT_PUBLIC_FIREBASE_VAPID_PRIVATE_KEY: z.string(),
+    BUNNY_API_KEY: z.string(),
+    BUNNY_STORAGE_ZONE: z.string(),
+    BUNNY_HOSTNAME: z.string(),
 });
 
 export const validateEnv = () => envSchema.safeParse(process.env);
