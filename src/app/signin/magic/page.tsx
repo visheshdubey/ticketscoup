@@ -5,9 +5,12 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Spinner from '@/components/spinner';
 
-type Props = {};
+type Props = {
+    email: string;
+};
 
 const MagicLinkPage = (props: Props) => {
+    const { email = 'ankitjiganwal@gmail.com' } = props;
     const searchParams = useSearchParams();
     const token = searchParams.get('token');
 
@@ -26,16 +29,14 @@ const MagicLinkPage = (props: Props) => {
     return (
         <>
             <main className="h-screen flex flex-col gap-12">
-                <div className="md:max-w-[1024px] gap-10 mx-auto px-4 flex flex-col justify-center items-center grow h-full w-full">
+                <div className="md:max-w-5xl gap-10 mx-auto px-4 flex flex-col justify-center items-center grow h-full w-full">
                     <div className="flex flex-col max-w-80 w-full items-center justify-center gap-4">
-                        <span className="font-clashGrotesk text-center font-semibold text-[40px] leading-[49px] text-[#0057CC]">
+                        <span className="font-clashGrotesk text-center font-semibold text-4.25xl leading-[48px] text-[#0057CC]">
                             Ticketscoup
                         </span>
                         <p className="font-satoshi text-center text-sm leading-5 font-medium text-[#5C5C5C]">
                             Please wait while we sign you in, with{' '}
-                            <span className="font-satoshi font-bold text-sm leading-5 text-center">
-                                ankitjiganwal@gmail.com
-                            </span>
+                            <span className="font-satoshi font-bold text-sm leading-5 text-center">{email}</span>
                         </p>
                     </div>
 

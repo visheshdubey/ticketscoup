@@ -63,6 +63,11 @@ export default {
                 satoshi: ['var(--font-satoshi-variable)'],
                 clashGrotesk: ['var(--font-clash-grotesk-variable)'],
             },
+            fontSize: {
+                '2xs': '0.625rem', // 10px
+                '4.25xl': '2.5rem', // 40px
+                '4.5xl': '2.75rem', // 44px
+            },
             height: {
                 '4.5': '1.125rem', // 18px
             },

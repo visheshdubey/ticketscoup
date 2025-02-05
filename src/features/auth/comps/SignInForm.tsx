@@ -3,23 +3,32 @@
 import OAuthProviderButton from '@/features/auth/comps/OAuthProviderButton';
 import { ProvidersType } from '../types/next-auth';
 import { Button } from '@/components/ui/button';
+import { hc } from 'hono/client';
+import { AppType } from '@/server/app';
+import { useState } from 'react';
 
 type Props = {
     providers: ProvidersType | null;
-    email: string;
-    setEmail: React.Dispatch<React.SetStateAction<string>>;
-    handleSubmit: () => {};
 };
 
-const SignInForm = ({ providers, email, setEmail, handleSubmit }: Props) => {
+const SignInForm = ({ providers }: Props) => {
+    const [email, setEmail] = useState('');
+
+    const handleSubmit = async () => {
+        // TODO: client to moved to common location
+        const client = hc<AppType>(process.env.NEXT_PUBLIC_APP_URL);
+        const res = await client.api.signin['magic-link'].$post({ json: { email } });
+        const data = await res.json();
+    };
+
     return (
         <>
-            <div className="hidden md:flex md:max-w-[1024px] flex-col mx-auto px-4 pt-[27px] grow w-full items-start justify-start">
+            <div className="hidden md:flex md:max-w-5xl flex-col mx-auto px-4 pt-[27px] grow w-full items-start justify-start">
                 <span className="font-clashGrotesk font-semibold text-base leading-[19px] text-[#0057CC]">
                     Ticketscoup
                 </span>
             </div>
-            <div className="md:max-w-[1024px] flex flex-col mx-auto px-4 grow h-full w-full items-center justify-center">
+            <div className="md:max-w-5xl flex flex-col mx-auto px-4 grow h-full w-full items-center justify-center">
                 <div className="md:shadow-[0px_4px_4px_rgba(0,0,0,0.04)] z-20 max-w-sm w-full rounded-xl md:border md:border-[#DEE5EE] p-6 flex items-center justify-center flex-col">
                     <div className="flex flex-col font-satoshi text-center gap-2 font-medium text-base leading-[23px]">
                         <span> Welcome to</span>
