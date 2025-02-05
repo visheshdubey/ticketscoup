@@ -5,20 +5,16 @@ export type DBTicketCreateFn = ({
     status,
     assignedTo,
     subscribers,
-    chat,
-    type,
     updatedBy,
     createdBy,
+    teamTicketTypeId,
 }: {
     status: TicketStatus;
     assignedTo: number | null;
     subscribers: string[];
-    chat: any[];
-    type: string;
     updatedBy: string;
     createdBy: string;
     teamTicketTypeId: number;
-    userId: number | null;
 }) => Promise<any>;
 
 export type DBTicketUpdateFn = ({
