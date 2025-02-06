@@ -1,8 +1,5 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { toast } from 'sonner';
 import { usePushNotification } from '@/lib/fcm';
 
 export default function Home() {
@@ -12,12 +9,5 @@ export default function Home() {
         },
     });
 
-    return (
-        <div>
-            <Button onClick={() => setMuted(!muted)}>{muted ? 'Unmute' : 'Mute'}</Button>
-            <Button onClick={() => toast('Example Notification.')}>Show Notification</Button>
-
-            <Link href={'/signin'}>signin</Link>
-        </div>
-    );
+    return <div className="text-xl font-bold px-4">UnAuthenticated Page</div>;
 }

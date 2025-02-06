@@ -6,5 +6,5 @@ export const EmailTemplateMagicLink = (
     to: options.to,
     from: process.env.SMTP_USER,
     subject: 'Sign in to Ticketscoup',
-    html: `<p>Click the link to sign in: ${process.env.BASE_URL}/signin/magic?token=${options.token}</p>`,
+    html: `<p>Click the link to sign in: ${process.env.NEXT_PUBLIC_APP_URL}/signin/magic?token=${options.token}</p>`,
 });

@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 const envSchema = z.object({
     NODE_ENV: z.enum(['development', 'production', 'test']).optional(),
-    BASE_URL: z.string(),
+    NEXT_PUBLIC_APP_URL: z.string(),
     DEFAULT_TEAM_NAME: z.string(),
     DEFAULT_TEAM_DEVELOPER_USER_EMAIL: z.string(),
     DEFAULT_TEAM_DEVELOPER_USER_NAME: z.string(),
