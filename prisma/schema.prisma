@@ -22,7 +22,6 @@ enum Role {
 }
 
 enum TicketStatus {
-    UNASSIGNED
     TODO
     IN_PROGRESS
     HOLD
@@ -36,66 +35,67 @@ enum NotificationChannel {
 }
 
 model User {
-    id                      Int                       @id @default(autoincrement())
-    email                   String                    @unique
-    phone                   String?
-    password                String?
-    isBlocked               Boolean                   @default(false)
-    isEmailVerified         Boolean                   @default(false)
-    emailVerificationCode   String?
-    forgotPasswordCode      String?
-    name                    String
-    fcmToken                String?
-    avatar                  String?
-    role                    Role                      @default(CLIENT)
-    createdAt               DateTime                  @default(now())
-    updatedAt               DateTime                  @updatedAt
-    OrganizationUserProfile OrganizationUserProfile[]
+    id              Int               @id @default(autoincrement())
+    email           String            @unique
+    name            String?
+    phone           String?
+    provider        String?
+    isBlocked       Boolean           @default(false)
+    isEmailVerified Boolean           @default(false)
+    fcmToken        String?
+    avatar          String?
+    role            Role              @default(CLIENT)
+    createdAt       DateTime          @default(now())
+    updatedAt       DateTime          @updatedAt
+    TeamUserProfile TeamUserProfile[]
+    Ticket          Ticket[]
 }
 
-model Organization {
-    id                      Int                       @id @default(autoincrement())
-    name                    String
-    isActive                Boolean                   @default(false)
-    createdAt               DateTime                  @default(now())
-    updatedAt               DateTime                  @updatedAt
-    OrganizationTicketType  OrganizationTicketType[]
-    OrganizationUserProfile OrganizationUserProfile[]
-    Notification            Notification[]
+model Team {
+    id              Int               @id @default(autoincrement())
+    name            String
+    isActive        Boolean           @default(false)
+    createdAt       DateTime          @default(now())
+    updatedAt       DateTime          @updatedAt
+    TeamTicketType  TeamTicketType[]
+    TeamUserProfile TeamUserProfile[]
+    Notification    Notification[]
 }
 
-model OrganizationTicketType {
-    id             Int          @id @default(autoincrement())
-    ticketName     String
-    organization   Organization @relation(fields: [organizationId], references: [id])
-    createdAt      DateTime     @default(now())
-    updatedAt      DateTime     @updatedAt
-    organizationId Int
-    Ticket         Ticket[]
+model TeamTicketType {
+    id         Int      @id @default(autoincrement())
+    ticketName String
+    team       Team     @relation(fields: [teamId], references: [id])
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+    teamId     Int
+    Ticket     Ticket[]
 }
 
-model OrganizationUserProfile {
-    id             Int          @id @default(autoincrement())
-    user           User         @relation(fields: [userId], references: [id])
-    organization   Organization @relation(fields: [organizationId], references: [id])
-    role           Role         @default(CLIENT)
-    createdAt      DateTime     @default(now())
-    updatedAt      DateTime     @updatedAt
-    userId         Int
-    organizationId Int
+model TeamUserProfile {
+    id        Int      @id @default(autoincrement())
+    user      User     @relation(fields: [userId], references: [id])
+    team      Team     @relation(fields: [teamId], references: [id])
+    role      Role     @default(CLIENT)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    userId    Int
+    teamId    Int
 }
 
 model Ticket {
-    id                       Int                    @id @default(autoincrement())
-    status                   TicketStatus           @default(UNASSIGNED)
-    subscribers              String[]
-    chat                     TicketChat[]
-    type                     OrganizationTicketType @relation(fields: [organizationTicketTypeId], references: [id])
-    updatedBy                String
-    createdBy                String
-    createdAt                DateTime               @default(now())
-    updatedAt                DateTime               @updatedAt
-    organizationTicketTypeId Int
+    id               Int            @id @default(autoincrement())
+    status           TicketStatus   @default(TODO)
+    assignedTo       User?          @relation(fields: [userId], references: [id])
+    subscribers      String[]
+    chat             TicketChat[]
+    type             TeamTicketType @relation(fields: [teamTicketTypeId], references: [id])
+    updatedBy        String
+    createdBy        String
+    createdAt        DateTime       @default(now())
+    updatedAt        DateTime       @updatedAt
+    teamTicketTypeId Int
+    userId           Int?
 }
 
 model TicketChat {
@@ -111,14 +111,14 @@ model TicketChat {
 }
 
 model Notification {
-    id             Int                   @id @default(autoincrement())
-    channels       NotificationChannel[] @default([PUSH])
-    content        String?
-    image          String?
-    audience       String[]
-    eventType      String
-    organization   Organization          @relation(fields: [organizationId], references: [id])
-    createdAt      DateTime              @default(now())
-    updatedAt      DateTime              @updatedAt
-    organizationId Int
+    id        Int                   @id @default(autoincrement())
+    channels  NotificationChannel[] @default([PUSH])
+    content   String?
+    image     String?
+    audience  String[]
+    eventType String
+    team      Team                  @relation(fields: [teamId], references: [id])
+    createdAt DateTime              @default(now())
+    updatedAt DateTime              @updatedAt
+    teamId    Int
 }
