@@ -121,4 +121,8 @@ body {
   .animate-collapse {
     animation: collapse 0.3s ease-in-out;
   }
+
+  .group[data-side="left"] .group-data-\[side\=left\]\:border-r {
+    border-right-width: 0px !important;
+  }
 }

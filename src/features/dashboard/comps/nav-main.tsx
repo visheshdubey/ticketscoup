@@ -31,16 +31,19 @@ export function NavMain({
     url?: string;
     icon?: LucideIcon;
     isActive?: boolean;
+    requiredRoleAny?: string[];
     items?: {
       title: string;
       url: string;
+      requiredRoleAny?: string[];
     }[];
   }[];
   groupLabel: string;
 }) {
   const { open } = useSidebar();
-
-  const selectedItem = sidebarElementsMap[usePathname().slice(1) as PageKey];
+  const userRole = "ADMIN";
+  const selectedItem =
+    sidebarElementsMap[usePathname().split("/").pop() as PageKey];
 
   return (
     <SidebarGroup
@@ -51,7 +54,9 @@ export function NavMain({
       </SidebarGroupLabel>
       <SidebarMenu className="pt-4 gap-1.5">
         {items.map((item) =>
-          item.items && item.items.length > 0 ? (
+          item.items &&
+          item.items.length > 0 &&
+          item.requiredRoleAny?.includes(userRole) ? (
             <Collapsible
               key={item.title}
               asChild
@@ -79,41 +84,46 @@ export function NavMain({
                 </CollapsibleTrigger>
                 <CollapsibleContent className="overflow-hidden transition-all duration-300 data-[state=open]:animate-expand data-[state=closed]:animate-collapse">
                   <SidebarMenuSub className="px-5 pt-3.5 border-l-0">
-                    {item.items?.map((subItem) => (
-                      <SidebarMenuSubItem key={subItem.title}>
-                        <SidebarMenuSubButton asChild>
-                          <a href={subItem.url}>
-                            <span>{subItem.title}</span>
-                          </a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    ))}
+                    {item.items?.map(
+                      (subItem) =>
+                        subItem.requiredRoleAny?.includes(userRole) && (
+                          <SidebarMenuSubItem key={subItem.title}>
+                            <SidebarMenuSubButton asChild>
+                              <a href={subItem.url}>
+                                <span>{subItem.title}</span>
+                              </a>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        )
+                    )}
                   </SidebarMenuSub>
                 </CollapsibleContent>
               </SidebarMenuItem>
             </Collapsible>
           ) : (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton
-                asChild
-                tooltip={item.title}
-                className="!p-[0.4rem]"
-              >
-                <a
-                  href={item.url}
-                  className={`flex items-center space-x-2 ${
-                    selectedItem === item.title ? "text-white" : ""
-                  }`}
+            item.requiredRoleAny?.includes(userRole) && (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton
+                  asChild
+                  tooltip={item.title}
+                  className="!p-[0.4rem]"
                 >
-                  <div className="flex -ml-0.5">
-                    {item.icon && (
-                      <item.icon strokeWidth={1.75} width={20} height={20} />
-                    )}
-                  </div>
-                  <span>{item.title}</span>
-                </a>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+                  <a
+                    href={item.url}
+                    className={`flex items-center space-x-2 ${
+                      selectedItem === item.title ? "text-white" : ""
+                    }`}
+                  >
+                    <div className="flex -ml-0.5">
+                      {item.icon && (
+                        <item.icon strokeWidth={1.75} width={20} height={20} />
+                      )}
+                    </div>
+                    <span>{item.title}</span>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            )
           )
         )}
       </SidebarMenu>

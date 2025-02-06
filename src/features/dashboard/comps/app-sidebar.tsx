@@ -50,7 +50,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { open } = useSidebar();
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader className={`pt-6 ${open ? "pl-[25px] pr-[22px]" : ""} font-satoshi`}>
+      <SidebarHeader
+        className={`pt-6 ${open ? "pl-[25px] pr-[22px]" : ""} font-satoshi`}
+      >
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
