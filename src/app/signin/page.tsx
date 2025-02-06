@@ -22,7 +22,7 @@ const SigninPage = (props: Props) => {
     }, []);
 
     const handleSubmit = async () => {
-        const client = hc<AppType>(process.env.BASE_URL);
+        const client = hc<AppType>(process.env.NEXT_PUBLIC_APP_URL);
         const res = await client.api.signin['magic-link'].$post({ json: { email } });
         const data = await res.json();
     };
