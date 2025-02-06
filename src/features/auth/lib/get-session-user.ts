@@ -23,7 +23,6 @@ export const getSession = {
             provider: get(session, `data.token.provider`),
             role: get(session, `data.token.role`, 'CLIENT'),
         };
-        console.log(sessionUser);
 
         return sessionUser;
     },
