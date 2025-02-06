@@ -1,23 +1,17 @@
 import 'next-auth';
+import { DefaultSession } from 'next-auth';
+
+type UserProfile = { id?: string; name?: string; email: string; provider?: string; role?: string };
 
 declare module 'next-auth' {
-    interface Session {
-        user: {
-            _id?: string;
-            role: string;
-        } & DefaultSession['user'];
+    interface Session extends DefaultSession {
+        token?: JWT;
     }
-
-    interface User {
-        _id?: string;
-    }
+    interface User extends UserProfile {}
 }
 
 declare module 'next-auth/jwt' {
-    interface JWT {
-        _id?: string;
-        role: string;
-    }
+    interface JWT extends UserProfile {}
 }
 
 type ProvidersType = Record<LiteralUnion<BuiltInProviderType>, ClientSafeProvider>;

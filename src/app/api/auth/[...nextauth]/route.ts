@@ -1,5 +1,4 @@
-import NextAuth from 'next-auth';
-import authOptions from '@/features/auth/auth-options';
+import nextAuth from '@/features/auth/auth-options';
 
-export const { auth, handlers, signIn, signOut } = NextAuth(authOptions);
+export const { auth, handlers, signIn, signOut } = nextAuth;
 export const { GET, POST } = handlers;
