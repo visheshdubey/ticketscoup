@@ -1,6 +1,6 @@
 import React from "react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { useDeviceType } from "../hooks/useMediaquery";
+import { useDeviceType } from "@/features/dashboard/hooks/useMediaquery";
 import { usePathname } from "next/navigation";
 import { pageTitleMap } from "@/lib/config";
 import { PageKey } from "@/lib/config";
@@ -8,11 +8,10 @@ import HeaderActions from "./header-actions";
 import BreadcrumbComponent from "@/components/breadcrumb";
 
 type AppHeaderProps = {
-  data: {};
   hasNotifications: boolean;
 };
 
-export default function AppHeader({ data, hasNotifications }: AppHeaderProps) {
+export default function AppHeader({ hasNotifications }: AppHeaderProps) {
   const isMobile = useDeviceType();
   const pathName = usePathname().split("/").pop();
   const pageBreadcrumbTitle = pageTitleMap[pathName as PageKey];

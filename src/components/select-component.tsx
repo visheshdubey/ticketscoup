@@ -7,6 +7,7 @@ import {
   SelectGroup,
   SelectItem,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
 type Option = {
   value: string;
@@ -39,7 +40,10 @@ export default function SelectComponent({
       disabled={options.length === 0}
     >
       <SelectTrigger
-        className={`${className} gap-2 focus:outline-none focus:border-transparent focus:ring-0`}
+        className={cn(
+          "gap-2 focus:outline-none focus:border-transparent focus:ring-0",
+          className
+        )}
       >
         <SelectValue placeholder={selectedOption} />
       </SelectTrigger>
