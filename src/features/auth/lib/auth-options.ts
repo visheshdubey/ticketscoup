@@ -1,9 +1,9 @@
+import NextAuth, { NextAuthConfig } from 'next-auth';
 import { dbUserFindByEmail, dbUserUpsertAndFetch } from '@/server/lib/db/user';
 
 import { AuthProvider } from '@/server/lib/constants/enums';
 import { CredentialAuth } from '../auth-providers/credentials';
 import { GithubAuth } from '@/features/auth/auth-providers/github';
-import { NextAuthConfig } from 'next-auth';
 
 export const authOptions: NextAuthConfig = {
     providers: [GithubAuth, CredentialAuth],
@@ -29,7 +29,7 @@ export const authOptions: NextAuthConfig = {
                 return false;
             }
         },
-
+        // TODO: Fix Type error
         async jwt({ token, user, account, trigger, session }) {
             /**
              * If account and user are present, it means this is the initial sign-in. The callback adds the user's ID to the token.
@@ -62,13 +62,16 @@ export const authOptions: NextAuthConfig = {
                 ...token,
                 id: dbUser.id,
                 email: dbUser.email,
-                providers: dbUser.provider,
+                provider: dbUser.provider,
+                name: dbUser.name,
+                role: dbUser.role,
             };
         },
 
         async session({ session, token }) {
             if (session.user) {
-                session.user.token = token;
+                session.token = token;
+                session.userId = session.token.id || '';
             }
 
             return session;
@@ -83,4 +86,4 @@ export const authOptions: NextAuthConfig = {
     debug: process.env.NODE_ENV === 'development',
 };
 
-export default authOptions;
+export default NextAuth(authOptions);
