@@ -1,8 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { AudioWaveform, Command } from "lucide-react";
-import Image from "next/image";
 import { NavMain } from "@/features/dashboard/comps/nav-main";
 import { NavUser } from "@/features/dashboard/comps/nav-user";
 import { TeamSwitcher } from "@/features/dashboard/comps/team-switcher";
