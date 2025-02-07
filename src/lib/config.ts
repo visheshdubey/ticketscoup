@@ -1,5 +1,6 @@
 import { House, Store, Users, Contact, Bell, Settings } from "lucide-react";
 import { Role } from "@prisma/client";
+import { AudioWaveform, Command } from "lucide-react";
 
 export function getMenuList(pathname: string) {
   return {
@@ -133,3 +134,30 @@ export const sidebarElementsMap: Record<PageKey, string> = {
   staff: "Staff",
   notifications: "Notifications",
 };
+
+export function getTeamElements() {
+  return {
+    user: {
+      name: "VishalMadanCA",
+      email: "vishalmadanCA@example.com",
+      avatar: "/company-logo.svg",
+    },
+    teams: [
+      {
+        name: "VishalMadanCA",
+        logo: "/company-logo.svg",
+        plan: "Visit Site",
+      },
+      {
+        name: "Acme Corp.",
+        logo: AudioWaveform,
+        plan: "Startup",
+      },
+      {
+        name: "Evil Corp.",
+        logo: Command,
+        plan: "Free",
+      },
+    ],
+  };
+}

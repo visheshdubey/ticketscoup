@@ -2,9 +2,7 @@
 
 import * as React from "react";
 import { AudioWaveform, Command } from "lucide-react";
-
 import Image from "next/image";
-
 import { NavMain } from "@/features/dashboard/comps/nav-main";
 import { NavUser } from "@/features/dashboard/comps/nav-user";
 import { TeamSwitcher } from "@/features/dashboard/comps/team-switcher";
@@ -16,42 +14,21 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { getMenuList } from "@/lib/config";
+import { cn } from "@/lib/utils";
+import { getTeamElements } from "@/lib/config";
 
 const navMain = getMenuList("/");
-
-const data = {
-  user: {
-    name: "VishalMadanCA",
-    email: "vishalmadanCA@example.com",
-    avatar: "/company-logo.svg",
-  },
-  teams: [
-    {
-      name: "VishalMadanCA",
-      logo: () => (
-        <Image src="/company-logo.svg" alt="My Icon" width={32} height={32} />
-      ),
-      plan: "Visit Site",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
-};
+const data = getTeamElements();
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { open } = useSidebar();
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader
-        className={`pt-6 ${open ? "pl-[25px] pr-[22px]" : ""} font-satoshi`}
+        className={cn(
+          "pt-6 font-satoshi pointer-events-none",
+          open && "pl-[25px] pr-[22px]"
+        )}
       >
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
