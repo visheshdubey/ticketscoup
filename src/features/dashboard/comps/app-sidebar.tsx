@@ -15,7 +15,7 @@ import {
   SidebarHeader,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { getMenuList } from "@/lib/menu-list";
+import { getMenuList } from "@/lib/config";
 
 const navMain = getMenuList("/");
 

@@ -7,7 +7,7 @@ export function getMenuList(pathname: string) {
     items: [
       {
         title: "Overview",
-        url: "/dashboard/overview",
+        url: "/dashboard",
         icon: House,
         requiredRoleAny: [
           Role.ADMIN,
@@ -101,3 +101,35 @@ export function getMenuList(pathname: string) {
     ],
   };
 }
+
+export type PageKey =
+  | "dashboard"
+  | "tickets"
+  | "clients"
+  | "staff"
+  | "notifications";
+
+export const widgets = [
+  { title: "Total tickets", value: "7,265", growth: "+11.01" },
+  { title: "Unassigned", value: "3,671", growth: "+11.01" },
+  { title: "In-progress", value: "51", growth: "+11.01" },
+  { title: "Done", value: "230", growth: "+11.01" },
+  { title: "On-Hold", value: "2", growth: "+11.01" },
+  { title: "Avg. resolution time (Hr)", value: "13", growth: "+11.01" },
+];
+
+export const pageTitleMap: Record<PageKey, string> = {
+  dashboard: "Overview",
+  tickets: "All Tickets",
+  clients: "Clients",
+  staff: "Staff",
+  notifications: "Notifications",
+};
+
+export const sidebarElementsMap: Record<PageKey, string> = {
+  dashboard: "Overview",
+  tickets: "Tickets",
+  clients: "Clients",
+  staff: "Staff",
+  notifications: "Notifications",
+};

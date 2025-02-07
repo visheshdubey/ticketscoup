@@ -19,8 +19,8 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
-import { sidebarElementsMap } from "../lib/mapper";
-import { PageKey } from "../types/types";
+import { sidebarElementsMap } from "@/lib/config";
+import { PageKey } from "@/lib/config";
 
 export function NavMain({
   items,

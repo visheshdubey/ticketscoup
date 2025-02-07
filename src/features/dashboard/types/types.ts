@@ -11,5 +11,3 @@ export interface WidgetCardProps {
 }
 
 export type LogoType = string | ComponentType<{ size?: number }>;
-
-export type PageKey = "overview" | "tickets" | "clients" | "staff" | "notifications";
