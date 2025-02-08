@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 type ProviderIconProps = {
     provider: string;
@@ -29,7 +30,7 @@ export const GoogleIcon = ({ className = 'size-4' }: { className?: string }) => 
 const ProviderIcon = ({ provider, className = 'size-4' }: ProviderIconProps) => {
     switch (provider.toLowerCase()) {
         case 'github':
-            return <GoogleIcon className={className} />;
+            return <Image src="/icons/ic_github.svg" width={16} height={16} alt="github-icon" className={className} />;
         case 'google':
             return <GoogleIcon className={className} />;
         default:
