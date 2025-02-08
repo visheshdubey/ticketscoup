@@ -42,7 +42,7 @@ const SignInForm = ({ providers }: Props) => {
                             <OAuthProviderButton
                                 key={`oauth-button-${providers['github'].name}`}
                                 provider={providers['github']}
-                                className="shrink-0 grow-0 w-full bg-[#050C16] hover:bg-[#2c2c2c] hover:text-white text-sm font-satoshi font-medium leading-5 h-11"
+                                className="shrink-0 grow-0 rounded-lg w-full bg-[#050C16] hover:bg-[#2c2c2c] hover:text-white text-sm font-satoshi font-medium leading-5 h-11"
                             />
                         )}
                     </div>
@@ -53,13 +53,13 @@ const SignInForm = ({ providers }: Props) => {
                             required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="px-5 h-11 border text-sm leading-5 font-medium font-satoshi placeholder:text-[#596980] placeholder:text-sm placeholder:font-medium border-[#DEE5EE] rounded-md"
+                            className="px-5 h-11 border text-sm leading-5 font-medium font-satoshi placeholder:text-[#596980] placeholder:text-sm placeholder:font-medium border-[#DEE5EE] rounded-lg"
                             placeholder="m@example.com"
                         />
                         <Button
                             variant={'secondary'}
                             onClick={handleSubmit}
-                            className="flex items-center rounded-md text-sm leading-5 font-satoshi font-medium shadow-none px-5 h-11 mt-2 text-[#050C16] border-neutral-200/90 border"
+                            className="flex items-center rounded-lg text-sm leading-5 font-satoshi font-medium shadow-none px-5 h-11 mt-2 text-[#050C16] border-neutral-200/90 border hover:text-blue-700"
                         >
                             Continue with Email
                         </Button>
