@@ -43,8 +43,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         <html lang="en">
             <body className={`${geistSans.variable} ${geistMono.variable} ${satoshiVariable.variable} ${clashGroteskVariable.variable} antialiased`}>
                 <SessionProvider session={session}>
-                    <NotificationProvider>{children}</NotificationProvider>
-                    <Toaster />
+                <NotificationProvider>{children}</NotificationProvider>
+                <Toaster />
                 </SessionProvider>
             </body>
         </html>

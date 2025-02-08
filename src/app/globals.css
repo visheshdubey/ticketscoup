@@ -126,3 +126,17 @@ body {
     border-right-width: 0px !important;
   }
 }
+
+@keyframes spinner-fade {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.animate-spinner-fade {
+    animation: spinner-fade 1s infinite linear;
+}
