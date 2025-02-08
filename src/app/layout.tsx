@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: 'Ticketscoup',
+    title: 'Ticketscoup | Effortlessely create support tickets',
     description: 'Ticketing Platform',
 };
 
