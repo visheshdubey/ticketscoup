@@ -1,6 +1,6 @@
 import './globals.css';
 import { Geist, Geist_Mono } from 'next/font/google';
-import localFont from "next/font/local";
+import localFont from 'next/font/local';
 import type { Metadata } from 'next';
 import NotificationProvider from '@/components/providers/NotificationProvider';
 import { SessionProvider } from 'next-auth/react';
@@ -18,13 +18,13 @@ const geistMono = Geist_Mono({
 });
 
 const satoshiVariable = localFont({
-  src: "../../public/font/Satoshi-Variable.ttf",
-  variable: "--font-satoshi-variable",
+    src: '../../public/font/Satoshi-Variable.ttf',
+    variable: '--font-satoshi-variable',
 });
 
 const clashGroteskVariable = localFont({
-  src: "../../public/font/ClashGrotesk-Variable.ttf",
-  variable: "--font-clash-grotesk-variable",
+    src: '../../public/font/ClashGrotesk-Variable.ttf',
+    variable: '--font-clash-grotesk-variable',
 });
 
 export const metadata: Metadata = {
@@ -41,10 +41,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
     return (
         <html lang="en">
-            <body className={`${geistSans.variable} ${geistMono.variable} ${satoshiVariable.variable} ${clashGroteskVariable.variable} antialiased`}>
+            <body
+                className={`${geistSans.variable} ${geistMono.variable} ${satoshiVariable.variable} ${clashGroteskVariable.variable} antialiased`}
+            >
                 <SessionProvider session={session}>
-                <NotificationProvider>{children}</NotificationProvider>
-                <Toaster />
+                    <NotificationProvider>{children}</NotificationProvider>
+                    <Toaster />
                 </SessionProvider>
             </body>
         </html>
