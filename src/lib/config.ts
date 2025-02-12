@@ -120,3 +120,46 @@ export function getTeamElements() {
         ],
     };
 }
+
+export const tickets = [
+    {
+        userInitials: 'CN',
+        ticketId: '1',
+        userName: 'Vishesh Dubey',
+        ticketStatus: 'In-Progress',
+        ticketType: 'GST',
+        unReadMessages: 22,
+    },
+    {
+        userInitials: 'CN',
+        ticketId: '2',
+        userName: 'Vishesh Dubey',
+        ticketStatus: 'In-Progress',
+        ticketType: 'GST',
+        unReadMessages: 22,
+    },
+    {
+        userInitials: 'CN',
+        ticketId: '3',
+        userName: 'Vishesh Dubey',
+        ticketStatus: 'In-Progress',
+        ticketType: 'GST',
+        unReadMessages: 22,
+    },
+    {
+        userInitials: 'CN',
+        ticketId: '4',
+        userName: 'Vishesh Dubey',
+        ticketStatus: 'In-Progress',
+        ticketType: 'GST',
+        unReadMessages: 22,
+    },
+    {
+        userInitials: 'CN',
+        ticketId: '5',
+        userName: 'Vishesh Dubey',
+        ticketStatus: 'In-Progress',
+        ticketType: 'GST',
+        unReadMessages: 22,
+    },
+];
