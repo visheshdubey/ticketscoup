@@ -1,7 +1,7 @@
 import { TrendingUp } from 'lucide-react';
 import { WidgetCardProps } from '@/features/dashboard/types/types';
 
-export default function Card({ info }: WidgetCardProps) {
+export default function StatsCard({ info }: WidgetCardProps) {
     const { title, value, growth } = info;
 
     return (

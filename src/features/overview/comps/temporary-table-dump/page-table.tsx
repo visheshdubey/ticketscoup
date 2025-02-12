@@ -1,5 +1,6 @@
-import { GenericTable, Column } from './generic-table';
-import { Invoice } from '../types/types';
+import { Column, GenericTable } from './generic-table';
+
+import { Invoice } from '../../../dashboard/types/types';
 
 type GenericTableProps<T> = {
     columns: Column<T>[];
