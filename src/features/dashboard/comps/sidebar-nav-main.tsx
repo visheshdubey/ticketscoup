@@ -18,10 +18,7 @@ import { usePathname } from 'next/navigation';
 import { sidebarElementsMap } from '@/lib/config';
 import { PageKey } from '@/lib/config';
 
-export function NavMain({
-    items,
-    groupLabel,
-}: {
+type NavMain = {
     items: {
         title: string;
         url?: string;
@@ -35,7 +32,9 @@ export function NavMain({
         }[];
     }[];
     groupLabel: string;
-}) {
+};
+
+export function SidebarNavMain({ items, groupLabel }: NavMain) {
     const { open } = useSidebar();
     const userRole = 'ADMIN';
     const selectedItem = sidebarElementsMap[usePathname().split('/').pop() as PageKey];

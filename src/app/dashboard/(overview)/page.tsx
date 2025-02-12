@@ -11,7 +11,7 @@ import { ticketStatus, ticketStatusColorMap, ticketStatusMap } from '@/lib/confi
 import { Button } from '@/components/ui/button';
 import Card from '@/components/cards/stat-card';
 import { Column } from '@/features/dashboard/comps/generic-table';
-import { DashboardTitle } from '@/features/dashboard/comps/dashboard-title';
+import { DashboardPageTitle } from '@/features/dashboard/core/comps/dashboard-page-title';
 import { EllipsisVerticalIcon } from 'lucide-react';
 import { Invoice } from '@/features/dashboard/types/types';
 import { ListFilterIcon } from 'lucide-react';
@@ -147,7 +147,7 @@ export default function OverviewPage() {
         <>
             <div className="bg-[#EAECFC] md:bg-white md:h-full flex flex-col px-4 pt-[17px] md:px-9 md:pt-2">
                 <div className="flex justify-between md:justify-start gap-5">
-                    <DashboardTitle title="Overview" />
+                    <DashboardPageTitle title="Overview" />
 
                     <div>
                         <SelectComponent

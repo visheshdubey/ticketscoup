@@ -1,9 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { ChevronsUpDown, Plus } from 'lucide-react';
-import Image from 'next/image';
 
+import { ChevronsUpDown, Plus } from 'lucide-react';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -15,6 +14,8 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar';
 
+import Image from 'next/image';
+
 export function getLogo(logo: string | React.ElementType) {
     if (typeof logo === 'string') {
         return <Image src={logo} alt="My Icon" width={32} height={32} priority />;
@@ -24,7 +25,7 @@ export function getLogo(logo: string | React.ElementType) {
     return <LogoComponent className="size-4 shrink-0" />;
 }
 
-export function TeamSwitcher({
+export function SidebarTeamSwitcher({
     teams,
 }: {
     teams: {
