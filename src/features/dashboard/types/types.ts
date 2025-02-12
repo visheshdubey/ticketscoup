@@ -11,3 +11,12 @@ export interface WidgetCardProps {
 }
 
 export type LogoType = string | ComponentType<{ size?: number }>;
+
+export interface Invoice {
+  id: string;
+  client: string;
+  type: string;
+  status: string;
+  lastUpdated: string;
+  assginedTo: string;
+}

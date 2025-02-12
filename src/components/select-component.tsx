@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
-type Option = {
+export type Option = {
   value: string;
   label: string;
 };
