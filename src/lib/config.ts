@@ -1,6 +1,7 @@
 import { House, Store, Users, Contact, Bell, Settings } from "lucide-react";
 import { Role } from "@prisma/client";
 import { AudioWaveform, Command } from "lucide-react";
+import { Invoice } from '@/features/dashboard/types/types';
 
 export function getMenuList(pathname: string) {
   return {
@@ -161,3 +162,76 @@ export function getTeamElements() {
     ],
   };
 }
+
+// TODO: Change the value of key when confirmed
+export const ticketStatus = {
+  IN_PROGRESS: 'IN_PROGRESS',
+  HOLD: 'HOLD',
+  DONE: 'DONE',
+  CANCELLED: 'CANCELLED',
+};
+
+export const ticketStatusMap: { [key: string]: string } = {
+  IN_PROGRESS: 'In-progress',
+  HOLD: 'On-Hold',
+  DONE: 'Done',
+  CANCELLED: 'Cancelled',
+};
+
+export const ticketStatusColorMap: { [key: string]: { bg: string; text: string } } = {
+  IN_PROGRESS: { bg: 'bg-[#197BFF]', text: 'text-[#197BFF]' },
+  HOLD: { bg: 'bg-[#CDBB15]', text: 'text-[#CDBB15]' },
+  DONE: { bg: 'bg-[#008434]', text: 'text-[#008434]' },
+  CANCELLED: { bg: 'bg-[#A09B96]', text: 'text-[#A09B96]' },
+};
+
+export const invoices: Invoice[] = [
+  {
+      id: 'TK-1023',
+      client: 'John Doe',
+      type: 'GST Return',
+      status: 'IN_PROGRESS',
+      lastUpdated: 'Sun Aug 11 2024',
+      assginedTo: 'Vishesh Dubey',
+  },
+  {
+      id: 'TK-1024',
+      client: 'John Doe',
+      type: 'GST Return',
+      status: 'DONE',
+      lastUpdated: 'Sun Aug 11 2024',
+      assginedTo: 'Vishesh Dubey',
+  },
+  {
+      id: 'TK-1025',
+      client: 'John Doe',
+      type: 'GST Return',
+      status: 'HOLD',
+      lastUpdated: 'Sun Aug 11 2024',
+      assginedTo: 'Vishesh Dubey',
+  },
+  {
+      id: 'TK-1026',
+      client: 'John Doe',
+      type: 'GST Return',
+      status: 'CANCELLED',
+      lastUpdated: 'Sun Aug 11 2024',
+      assginedTo: 'Vishesh Dubey',
+  },
+  {
+      id: 'TK-1027',
+      client: 'John Doe',
+      type: 'GST Return',
+      status: 'IN_PROGRESS',
+      lastUpdated: 'Sun Aug 11 2024',
+      assginedTo: 'Vishesh Dubey',
+  },
+  {
+      id: 'TK-1028',
+      client: 'John Doe',
+      type: 'GST Return',
+      status: 'CANCELLED',
+      lastUpdated: 'Sun Aug 11 2024',
+      assginedTo: 'Vishesh Dubey',
+  },
+];
