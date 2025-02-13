@@ -1,9 +1,13 @@
-type TicketInfoPaneProps = {};
+import { cn } from '@/lib/utils';
 
-export function TicketInfoPane(props: TicketInfoPaneProps) {
+type TicketInfoPaneProps = {
+    className?: string;
+};
+
+export function TicketInfoPane({ className }: TicketInfoPaneProps) {
     return (
-        <div className="w-1/4 max-w-xs shrink-0 h-full bg-white border-l p-4">
+        <aside className={cn('w-1/4 max-w-xs shrink-0 h-full bg-white border-l p-4', className)}>
             <span className="font-medium text-lg font-satoshi">Ticket Details</span>
-        </div>
+        </aside>
     );
 }

@@ -31,7 +31,7 @@ export function TicketListItem(props: TicketListItemProps) {
                 </div>
             </div>
 
-            {unReadCount && <TicketChatUnreadCounterBadge unReadCount={unReadCount} />}
+            <TicketChatUnreadCounterBadge unReadCount={unReadCount} />
         </Link>
     );
 }
