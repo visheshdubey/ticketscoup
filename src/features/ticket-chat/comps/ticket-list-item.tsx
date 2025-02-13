@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Ticket } from '@/constants/index';
 import { getNameInitials } from '@/lib/get-name-initials';
 import { UserAvatar } from '@/components/user-avatar';
+import { TicketChatUnreadCounterBadge } from './ticket-chat-unread-counter-badge';
 
 type TicketListItemProps = {
     ticket: Ticket;
@@ -30,11 +31,7 @@ export function TicketListItem(props: TicketListItemProps) {
                 </div>
             </div>
 
-            {unReadCount && (
-                <div className="bg-blue-500 absolute right-2 px-1.5 py-1 size-5 text-2xs flex items-center justify-center font-satoshi font-bold text-primary-foreground rounded-md">
-                    {unReadCount}
-                </div>
-            )}
+            {unReadCount && <TicketChatUnreadCounterBadge unReadCount={unReadCount} />}
         </Link>
     );
 }
