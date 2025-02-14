@@ -1,20 +1,17 @@
-import { TicketChatData } from '@/constants/index';
+import { TicketChat } from '@/constants/index';
 import { getNameInitials } from '@/lib/get-name-initials';
 import { cn } from '@/lib/utils';
 import { UserAvatar } from '@/components/user-avatar';
+import { formatTimestampToLocaleTime } from '@/lib/date-time';
 
 type TicketChatCardProps = {
-    data: TicketChatData;
+    data: TicketChat;
 };
 
 export function TicketChatCard(props: TicketChatCardProps) {
     const { userName, description, isMine, timestamp } = props.data;
     const userInitials = getNameInitials(userName);
-    const chatTime = new Date(timestamp).toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-    });
+    const chatTime = formatTimestampToLocaleTime(timestamp);
 
     return (
         <div className={cn('flex gap-2 ', isMine ? 'flex-row-reverse' : '')}>

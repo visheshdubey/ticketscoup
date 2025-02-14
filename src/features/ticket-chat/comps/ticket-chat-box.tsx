@@ -91,7 +91,7 @@ export default function TicketChatBox() {
     ];
 
     return (
-        <div className="grow h-full flex flex-col bg-[#FAFAFA]">
+        <div className="grow h-full flex flex-col bg-zinc-50">
             <TicketChatBoxHeader ticket={data} />
 
             <div className="overflow-hidden w-full h-screen lg:h-[calc(100vh_-_7.5rem)] relative ">

@@ -1,19 +1,12 @@
 export type Ticket = {
     userName: string;
     id: string;
-    status: string;
-    type: string;
-    unReadCount: number;
+    status?: string;
+    type?: string;
+    unReadCount?: number;
 };
 
-export type TicketData = {
-    userName: string;
-    id: string;
-    status: string;
-    type: string;
-};
-
-export type TicketChatData = {
+export type TicketChat = {
     userName: string;
     id: string;
     isMine: boolean;

@@ -1,9 +1,9 @@
 import { UserAvatar } from '@/components/user-avatar';
-import { TicketData } from '@/constants/index';
+import { Ticket } from '@/constants/index';
 import { getNameInitials } from '@/lib/get-name-initials';
 
 type TicketChatBoxHeaderProps = {
-    ticket: TicketData;
+    ticket: Ticket;
 };
 
 export function TicketChatBoxHeader(props: TicketChatBoxHeaderProps) {
