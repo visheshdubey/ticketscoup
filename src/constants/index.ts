@@ -13,3 +13,7 @@ export type TicketChat = {
     description: string;
     timestamp: string;
 };
+
+export type Segment = {
+    heading: string;
+};

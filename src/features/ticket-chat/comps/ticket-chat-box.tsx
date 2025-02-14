@@ -2,13 +2,15 @@ import { TicketChatBoxHeader } from '@/features/ticket-chat/comps/ticket-chat-bo
 import { TicketChatCard } from '@/features/ticket-chat/comps/ticket-chat-card';
 
 export default function TicketChatBox() {
+    //TODO: Remove the data when api integrated
     const data = {
-        id: '1',
-        userName: 'John Doe',
+        id: 'TK-101',
+        userName: 'Vishesh Kumar Dubey',
         status: 'In-Progress',
         type: 'GST',
     };
 
+    //TODO: Remove the chatMessage when api integrated
     const chatMessages = [
         {
             id: '1',
@@ -94,7 +96,7 @@ export default function TicketChatBox() {
         <div className="grow h-full flex flex-col bg-zinc-50">
             <TicketChatBoxHeader ticket={data} />
 
-            <div className="overflow-hidden w-full h-screen lg:h-[calc(100vh_-_7.5rem)] relative ">
+            <div className="overflow-hidden w-full h-screen lg:h-[calc(100vh_-_13rem)] relative">
                 <div className="h-full w-full overflow-y-scroll">
                     <div className="w-full mx-auto h-full flex flex-col gap-5 px-4 py-6">
                         {chatMessages.map((chat) => (
