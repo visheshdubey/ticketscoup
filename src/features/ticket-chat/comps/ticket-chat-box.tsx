@@ -1,7 +1,12 @@
+'use client';
+
 import { TicketChatBoxHeader } from '@/features/ticket-chat/comps/ticket-chat-box-header';
 import { TicketChatCard } from '@/features/ticket-chat/comps/ticket-chat-card';
+import { cn } from '@/lib/utils';
+import { useSidebar } from '@/components/ui/sidebar';
 
 export default function TicketChatBox() {
+    const { open } = useSidebar();
     //TODO: Remove the data when api integrated
     const data = {
         id: 'TK-101',
@@ -93,17 +98,18 @@ export default function TicketChatBox() {
     ];
 
     return (
-        <div className="grow h-full flex flex-col bg-zinc-50">
+        <div
+            className={cn(
+                'grow h-full flex flex-col bg-zinc-50',
+                open ? 'max-h-[calc(100svh_-_64px)]' : 'max-h-[calc(100svh_-_48px)]'
+            )}
+        >
             <TicketChatBoxHeader ticket={data} />
 
-            <div className="overflow-hidden w-full h-screen lg:h-[calc(100vh_-_13rem)] relative">
-                <div className="h-full w-full overflow-y-scroll">
-                    <div className="w-full mx-auto h-full flex flex-col gap-5 px-4 py-6">
-                        {chatMessages.map((chat) => (
-                            <TicketChatCard data={chat} />
-                        ))}
-                    </div>
-                </div>
+            <div className="w-full h-full mx-auto overflow-y-scroll flex flex-col gap-5 px-4 py-6">
+                {chatMessages.map((chat) => (
+                    <TicketChatCard data={chat} />
+                ))}
             </div>
         </div>
     );
