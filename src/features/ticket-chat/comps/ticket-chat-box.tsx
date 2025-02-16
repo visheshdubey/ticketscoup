@@ -5,8 +5,12 @@ import { TicketChatCard } from '@/features/ticket-chat/comps/ticket-chat-card';
 import { cn } from '@/lib/utils';
 import { useSidebar } from '@/components/ui/sidebar';
 
-export default function TicketChatBox() {
-    const { open } = useSidebar();
+type Props = {
+    handleToggleSidebar: () => void;
+    open: boolean;
+};
+
+export default function TicketChatBox({ open, handleToggleSidebar }: Props) {
     //TODO: Remove the data when api integrated
     const data = {
         id: 'TK-101',
@@ -104,11 +108,11 @@ export default function TicketChatBox() {
                 open ? 'max-h-[calc(100svh_-_64px)]' : 'max-h-[calc(100svh_-_48px)]'
             )}
         >
-            <TicketChatBoxHeader ticket={data} />
+            <TicketChatBoxHeader ticket={data} handleToggleSidebar={handleToggleSidebar} open={open} />
 
             <div className="w-full h-full mx-auto overflow-y-scroll flex flex-col gap-5 px-4 py-6">
                 {chatMessages.map((chat) => (
-                    <TicketChatCard data={chat} />
+                    <TicketChatCard key={chat.id} data={chat} />
                 ))}
             </div>
         </div>

@@ -1,21 +1,18 @@
 import { Button } from '@/components/ui/button';
 import { MailIcon, PhoneIcon } from 'lucide-react';
-import { Segment } from '@/constants/index';
-import { TicketInfoSegments } from '@/features/ticket-chat/comps/ticket-info-segments';
 
 export type TicketInfoPaneClientDetailsProps = {
-    segments: Segment[];
     clientDetails: {
         name: string;
         organization: string;
     };
 };
 
-export function TicketInfoPaneClientDetails({ segments, clientDetails }: TicketInfoPaneClientDetailsProps) {
+export function TicketInfoPaneClientDetails({ clientDetails }: TicketInfoPaneClientDetailsProps) {
     const { name, organization } = clientDetails;
 
     return (
-        <div className="flex flex-col gap-6 pt-6">
+        <div className="flex flex-col pt-6">
             <div className="flex flex-col gap-3">
                 <span className="font-satoshi font-medium text-xs text-neutral-400">Client Details</span>
                 <div className="flex flex-col">
@@ -33,7 +30,6 @@ export function TicketInfoPaneClientDetails({ segments, clientDetails }: TicketI
                     <span className="flex font-satoshi text-2xs text-[#7D7D7D]">{organization}</span>
                 </div>
             </div>
-            <TicketInfoSegments segments={segments} />
         </div>
     );
 }

@@ -1,22 +1,11 @@
 'use client';
 
-import TicketChatBox from '@/features/ticket-chat/comps/ticket-chat-box';
-import { TicketInfoPaneSidebar } from '@/features/ticket-chat/comps/ticket-info-pane-sidebar';
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
+import TicketDetailPageLayout from '@/features/ticket-chat/comps/layouts/ticket-chat-detail-page';
 
 type Props = {};
 
 const TicketDetailPage = (props: Props) => {
-    return (
-        <>
-            <SidebarProvider>
-                <SidebarInset>
-                    <TicketChatBox />
-                </SidebarInset>
-                <TicketInfoPaneSidebar />
-            </SidebarProvider>
-        </>
-    );
+    return <TicketDetailPageLayout />;
 };
 
 export default TicketDetailPage;

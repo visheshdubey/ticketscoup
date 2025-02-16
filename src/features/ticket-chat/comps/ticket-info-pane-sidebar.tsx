@@ -2,17 +2,10 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, useSidebar } fro
 import { TicketInfoPane } from './ticket-info-pane';
 import { useEffect } from 'react';
 
-export function TicketInfoPaneSidebar() {
-    const { setOpen } = useSidebar();
+type Props = {
+    open: boolean;
+};
 
-    useEffect(() => {
-        setOpen(false);
-    }, []);
-    return (
-        <>
-            <Sidebar className="mt-[57px] z-[2]" collapsible={'offcanvas'} side="right">
-                <TicketInfoPane />
-            </Sidebar>
-        </>
-    );
+export function TicketInfoPaneSidebar({ open }: Props) {
+    return <>{open && <TicketInfoPane />}</>;
 }
