@@ -1,15 +1,11 @@
-import TicketChatBox from '@/features/ticket-chat/comps/ticket-chat-box';
-import { TicketInfoPane } from '@/features/ticket-chat/comps/ticket-info-pane';
+'use client';
+
+import TicketDetailPageLayout from '@/features/ticket-chat/comps/layouts/ticket-chat-detail-page';
 
 type Props = {};
 
 const TicketDetailPage = (props: Props) => {
-    return (
-        <>
-            <TicketChatBox />
-            <TicketInfoPane />
-        </>
-    );
+    return <TicketDetailPageLayout />;
 };
 
 export default TicketDetailPage;

@@ -1,25 +1,26 @@
-import { UserAvatar } from '@/components/user-avatar';
+'use client';
+
 import { Ticket } from '@/constants/index';
 import { getNameInitials } from '@/lib/get-name-initials';
+import { TicketChatBoxHeaderUserDetail } from './ticket-chat-box-header-user-detail';
+import { TicketChaBoxHeaderActions } from './ticket-chat-box-header-actions';
 
 type TicketChatBoxHeaderProps = {
     ticket: Ticket;
+    handleToggleSidebar: () => void;
+    open: boolean;
 };
 
 export function TicketChatBoxHeader(props: TicketChatBoxHeaderProps) {
     const { userName, id } = props.ticket;
+    const { handleToggleSidebar, open } = props;
     const userInitials = getNameInitials(userName);
 
     return (
-        <div className="w-full bg-white border-b px-4 py-0.5">
-            <div className="flex relative items-center gap-4 py-1.5">
-                <UserAvatar userInitials={userInitials} className="size-9" />
-                <div className="flex flex-col">
-                    <span className="font-satoshi font-medium text-base text-[#0C0A09]">{userName}</span>
-                    <div className="flex items-center">
-                        <span className="font-medium font-satoshi text-[#A09B96] text-xs">{id}</span>
-                    </div>
-                </div>
+        <div className="w-full bg-white border-b px-7.5 py-4">
+            <div className="flex w-full items-center justify-between">
+                <TicketChatBoxHeaderUserDetail userInitials={userInitials} userName={userName} id={id} />
+                <TicketChaBoxHeaderActions handleTicketSidebar={handleToggleSidebar} open={open} />
             </div>
         </div>
     );

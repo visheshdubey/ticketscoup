@@ -1,14 +1,25 @@
+'use client';
+
 import { TicketChatBoxHeader } from '@/features/ticket-chat/comps/ticket-chat-box-header';
 import { TicketChatCard } from '@/features/ticket-chat/comps/ticket-chat-card';
+import { cn } from '@/lib/utils';
+import { useSidebar } from '@/components/ui/sidebar';
 
-export default function TicketChatBox() {
+type Props = {
+    handleToggleSidebar: () => void;
+    open: boolean;
+};
+
+export default function TicketChatBox({ open, handleToggleSidebar }: Props) {
+    //TODO: Remove the data when api integrated
     const data = {
-        id: '1',
-        userName: 'John Doe',
+        id: 'TK-101',
+        userName: 'Vishesh Kumar Dubey',
         status: 'In-Progress',
         type: 'GST',
     };
 
+    //TODO: Remove the chatMessage when api integrated
     const chatMessages = [
         {
             id: '1',
@@ -91,17 +102,18 @@ export default function TicketChatBox() {
     ];
 
     return (
-        <div className="grow h-full flex flex-col bg-zinc-50">
-            <TicketChatBoxHeader ticket={data} />
+        <div
+            className={cn(
+                'grow h-full flex flex-col bg-zinc-50',
+                open ? 'max-h-[calc(100svh_-_64px)]' : 'max-h-[calc(100svh_-_48px)]'
+            )}
+        >
+            <TicketChatBoxHeader ticket={data} handleToggleSidebar={handleToggleSidebar} open={open} />
 
-            <div className="overflow-hidden w-full h-screen lg:h-[calc(100vh_-_7.5rem)] relative ">
-                <div className="h-full w-full overflow-y-scroll">
-                    <div className="w-full mx-auto h-full flex flex-col gap-5 px-4 py-6">
-                        {chatMessages.map((chat) => (
-                            <TicketChatCard data={chat} />
-                        ))}
-                    </div>
-                </div>
+            <div className="w-full h-full mx-auto overflow-y-scroll flex flex-col gap-5 px-4 py-6">
+                {chatMessages.map((chat) => (
+                    <TicketChatCard key={chat.id} data={chat} />
+                ))}
             </div>
         </div>
     );

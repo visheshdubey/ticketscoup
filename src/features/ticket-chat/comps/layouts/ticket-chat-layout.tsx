@@ -2,10 +2,10 @@
 
 import DashboardContent from '@/features/dashboard/comps/dashboard-content';
 import { DashboardTitle } from '@/features/dashboard/comps/dashboard-title';
-import { useEffect } from 'react';
-import { useSidebar } from '@/components/ui/sidebar';
 import { TicketList } from '@/features/ticket-chat/comps/ticket-list';
 import { tickets } from '@/lib/config';
+import { useEffect } from 'react';
+import { useSidebar } from '@/components/ui/sidebar';
 
 type Props = { children: React.ReactNode };
 
