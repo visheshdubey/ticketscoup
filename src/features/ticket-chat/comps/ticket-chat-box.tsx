@@ -3,7 +3,6 @@
 import { TicketChatBoxHeader } from '@/features/ticket-chat/comps/ticket-chat-box-header';
 import { TicketChatCard } from '@/features/ticket-chat/comps/ticket-chat-card';
 import { cn } from '@/lib/utils';
-import { useSidebar } from '@/components/ui/sidebar';
 
 type Props = {
     handleToggleSidebar: () => void;
@@ -110,7 +109,7 @@ export default function TicketChatBox({ open, handleToggleSidebar }: Props) {
         >
             <TicketChatBoxHeader ticket={data} handleToggleSidebar={handleToggleSidebar} open={open} />
 
-            <div className="w-full h-full mx-auto overflow-y-scroll flex flex-col gap-5 px-4 py-6">
+            <div className="w-full h-full mx-auto overflow-y-scroll scrollbar-none flex flex-col gap-5 px-4 py-6">
                 {chatMessages.map((chat) => (
                     <TicketChatCard key={chat.id} data={chat} />
                 ))}

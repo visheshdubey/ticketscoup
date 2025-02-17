@@ -1,10 +1,7 @@
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { MailIcon, PhoneIcon } from 'lucide-react';
-import { TicketInfoPaneClientDetails } from './ticket-info-pane-client-details';
-import { Segment } from '@/constants/index';
-import { TicketInfoSegments } from './ticket-info-segments';
 import { TicketInfoPaneActions } from './ticket-info-pane-actions';
+import { TicketInfoPaneClientDetails } from './ticket-info-pane-client-details';
+import { TicketInfoSegments } from './ticket-info-segments';
+import { cn } from '@/lib/utils';
 
 type TicketInfoPaneProps = {
     className?: string;
@@ -23,7 +20,7 @@ export function TicketInfoPane({ className }: TicketInfoPaneProps) {
     };
 
     return (
-        <aside className="w-full h-full bg-white max-w-xs border border-l-zinc-100 transition-all duration-300 transform">
+        <aside className="w-full h-full bg-white max-w-xs border border-t-0 border-l-zinc-100 transition-all duration-300 transform">
             <div className={cn(' max-w-xs shrink-0 px-4 py-6', className)}>
                 <span className="font-medium text-base font-satoshi text-stone-950">Ticket Info</span>
             </div>
