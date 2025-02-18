@@ -1,6 +1,7 @@
-import UserAvatar from './avatar';
 import { Bell, BellDotIcon, PlusIcon } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
+import UserAvatar from './avatar';
 
 const HeaderActions = ({ hasNotifications, isMobile }: { hasNotifications: boolean; isMobile: boolean }) => (
     <div className="flex items-center gap-5 md:gap-10">

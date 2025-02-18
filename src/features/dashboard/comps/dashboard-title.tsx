@@ -1,7 +1,14 @@
+import { cn } from '@/lib/utils';
+
 type DashboardTitleProps = {
-    title: string;
+    children: string;
+    className?: string;
 };
 
-export const DashboardTitle = ({ title }: DashboardTitleProps) => {
-    return <span className="font-satoshi font-medium text-2xl leading-[34px] text-stone-950">{title}</span>;
+export const DashboardTitle = ({ children, className }: DashboardTitleProps) => {
+    return (
+        <span className={cn('font-satoshi font-medium text-2xl leading-[34px] text-stone-950', className)}>
+            {children}
+        </span>
+    );
 };

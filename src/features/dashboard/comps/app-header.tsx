@@ -18,7 +18,7 @@ export default function AppHeader({ hasNotifications }: AppHeaderProps) {
 
     return (
         <>
-            <header className="flex md:border-none border border-b-[#EFF6FF] border-solid bg-white md:rounded-tl-[20px] px-4 py-2 md:px-9 md:py-6 h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+            <header className="z-10 flex md:border-none border border-b-[#EFF6FF] border-solid bg-white md:rounded-tl-[20px] px-4 py-2 md:px-9 md:py-6 h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
                 <div style={{ justifyContent: 'space-between' }} className="flex items-center w-full">
                     <div className="flex items-center gap-3 md:gap-4">
                         <SidebarTrigger className="-ml-1" />
