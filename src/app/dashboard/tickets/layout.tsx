@@ -1,4 +1,5 @@
 'use client';
+
 import TicketChatLayout from '@/features/ticket-chat/comps/layouts/ticket-chat-layout';
 
 type Props = {

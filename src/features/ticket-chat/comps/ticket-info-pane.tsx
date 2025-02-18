@@ -20,8 +20,13 @@ export function TicketInfoPane({ className }: TicketInfoPaneProps) {
     };
 
     return (
-        <aside className="w-full h-full bg-white max-w-xs border border-t-0 border-l-zinc-100 transition-all duration-300 transform">
-            <div className={cn(' max-w-xs shrink-0 px-4 py-6', className)}>
+        <aside
+            className={cn(
+                'w-full h-full overflow-y-auto bg-white max-w-xs border border-t-0 border-l-zinc-100 transition-all duration-300 transform',
+                className
+            )}
+        >
+            <div className={'max-w-xs shrink-0 px-4 py-6'}>
                 <span className="font-medium text-base font-satoshi text-stone-950">Ticket Info</span>
             </div>
             <div className="max-w-xs shrink-0 px-4 flex flex-col gap-6">

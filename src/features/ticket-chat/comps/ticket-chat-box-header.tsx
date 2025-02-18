@@ -1,9 +1,9 @@
 'use client';
 
 import { Ticket } from '@/constants/index';
-import { getNameInitials } from '@/lib/get-name-initials';
-import { TicketChatBoxHeaderUserDetail } from './ticket-chat-box-header-user-detail';
 import { TicketChaBoxHeaderActions } from './ticket-chat-box-header-actions';
+import { TicketChatBoxHeaderUserDetail } from './ticket-chat-box-header-user-detail';
+import { getNameInitials } from '@/lib/get-name-initials';
 
 type TicketChatBoxHeaderProps = {
     ticket: Ticket;
@@ -17,11 +17,9 @@ export function TicketChatBoxHeader(props: TicketChatBoxHeaderProps) {
     const userInitials = getNameInitials(userName);
 
     return (
-        <div className="w-full bg-white border-b px-7.5 py-4">
-            <div className="flex w-full items-center justify-between">
-                <TicketChatBoxHeaderUserDetail userInitials={userInitials} userName={userName} id={id} />
-                <TicketChaBoxHeaderActions handleTicketSidebar={handleToggleSidebar} open={open} />
-            </div>
+        <div className="flex items-center justify-between w-full bg-white border-b px-4 lg:px-7.5 h-[70px]">
+            <TicketChatBoxHeaderUserDetail userInitials={userInitials} userName={userName} id={id} />
+            <TicketChaBoxHeaderActions handleTicketSidebar={handleToggleSidebar} open={open} />
         </div>
     );
 }
