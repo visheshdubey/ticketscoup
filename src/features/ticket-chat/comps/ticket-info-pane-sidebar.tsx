@@ -1,9 +1,8 @@
 'use client';
 
-import { Sheet, SheetClose, SheetContent, SheetTitle } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
 
 import { TicketInfoPane } from './ticket-info-pane';
-import { X } from 'lucide-react';
 import { useDeviceType } from '@/features/dashboard/hooks/useMediaquery';
 
 type Props = {
@@ -17,12 +16,9 @@ export function TicketInfoPaneSidebar({ open, onOpenChange }: Props) {
     if (isMobile) {
         return (
             <Sheet open={open} onOpenChange={onOpenChange}>
-                <SheetContent className="p-0">
+                <SheetContent className="p-0 flex flex-col">
                     <SheetTitle></SheetTitle>
-                    <SheetClose className="absolute right-4 top-4 z-[9000]">
-                        <X className="size-4" />
-                    </SheetClose>
-                    <TicketInfoPane className="mt-4 bg-transparent pointer-events-none" />
+                    <TicketInfoPane className="w-full -z-10 max-w-full" />
                 </SheetContent>
             </Sheet>
         );

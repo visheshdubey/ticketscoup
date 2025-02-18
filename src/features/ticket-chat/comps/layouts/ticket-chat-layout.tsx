@@ -26,11 +26,11 @@ const TicketChatLayout = (props: Props) => {
             <div className="flex w-full h-full border-t">
                 <div
                     className={cn(
-                        'w-1/4 shrink-0 max-w-xs h-full pr-4 border-r flex flex-col pt-2 gap-4',
+                        'w-full lg:w-1/4 shrink-0 max-w-full px-4 bg-white lg:max-w-xs h-full pr-4 border-r flex flex-col pt-2 gap-4',
                         isPathTicketChatMainRoute ? 'flex' : 'hidden lg:flex'
                     )}
                 >
-                    <DashboardTitle>Ticket Chat</DashboardTitle>
+                    <DashboardTitle className="text-xl">Ticket Chat</DashboardTitle>
                     <div className="flex flex-col gap-3">
                         <div className="w-full h-9 text-sm border rounded-md flex items-center px-4">Search</div>
                         <TicketList tickets={tickets} />

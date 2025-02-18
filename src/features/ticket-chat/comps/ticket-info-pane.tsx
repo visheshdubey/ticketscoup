@@ -26,10 +26,10 @@ export function TicketInfoPane({ className }: TicketInfoPaneProps) {
                 className
             )}
         >
-            <div className={'max-w-xs shrink-0 px-4 py-6'}>
+            <div className={'shrink-0 px-4 py-6'}>
                 <span className="font-medium text-base font-satoshi text-stone-950">Ticket Info</span>
             </div>
-            <div className="max-w-xs shrink-0 px-4 flex flex-col gap-6">
+            <div className="shrink-0 px-4 flex flex-col gap-6">
                 <TicketInfoPaneClientDetails clientDetails={clientDetails} />
                 <TicketInfoSegments segments={segments} />
             </div>
