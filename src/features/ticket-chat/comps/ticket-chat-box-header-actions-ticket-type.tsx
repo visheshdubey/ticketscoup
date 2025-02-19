@@ -5,7 +5,7 @@ type Props = {};
 const TicketChatBoxHeaderActionsType = (props: Props) => {
     return (
         <Select>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="xl:w-full min-w-[140px] max-w-full">
                 <SelectValue placeholder="Select Status" />
             </SelectTrigger>
             <SelectContent>
