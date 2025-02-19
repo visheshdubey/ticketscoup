@@ -96,6 +96,28 @@ export const sidebarElementsMap: Record<PageKey, string> = {
     notifications: 'Notifications',
 };
 
+// TODO: Change the value of key when confirmed
+export const ticketStatus = {
+    IN_PROGRESS: 'IN_PROGRESS',
+    HOLD: 'HOLD',
+    DONE: 'DONE',
+    CANCELLED: 'CANCELLED',
+};
+
+export const ticketStatusMap: { [key: string]: string } = {
+    IN_PROGRESS: 'In-progress',
+    HOLD: 'On-Hold',
+    DONE: 'Done',
+    CANCELLED: 'Cancelled',
+};
+
+export const ticketStatusColorMap: { [key: string]: { bg: string; text: string } } = {
+    IN_PROGRESS: { bg: 'bg-[#197BFF]', text: 'text-[#197BFF]' },
+    HOLD: { bg: 'bg-[#CDBB15]', text: 'text-[#CDBB15]' },
+    DONE: { bg: 'bg-[#008434]', text: 'text-[#008434]' },
+    CANCELLED: { bg: 'bg-[#A09B96]', text: 'text-[#A09B96]' },
+};
+
 export function getTeamElements() {
     return {
         user: {

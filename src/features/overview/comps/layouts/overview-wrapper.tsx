@@ -148,7 +148,7 @@ export default function OverviewWrapper() {
     return (
         <>
             <DashboardPageSection>
-                <div className="bg-[#EAECFC]_ bg-red-500">
+                <div className="bg-[#EAECFC] sm:bg-transparent">
                     <div className="flex justify-between md:justify-start gap-5">
                         <DashboardPageTitle>Overview</DashboardPageTitle>
 
@@ -160,7 +160,7 @@ export default function OverviewWrapper() {
                             />
                         </div>
                     </div>
-                    <div className="grid grid-cols-2 auto-rows-min md:flex md:flex-wrap pt-4 md:pt-6 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 auto-rows-min md:flex md:flex-wrap pt-4 md:pt-6 gap-4">
                         {WidgetList(widgets)}
                     </div>
                     {showMoreButtonInMobile && (
