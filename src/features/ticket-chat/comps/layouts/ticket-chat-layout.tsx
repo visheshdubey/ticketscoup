@@ -26,7 +26,7 @@ const TicketChatLayout = (props: Props) => {
             <div className="flex w-full h-full border-t">
                 <div
                     className={cn(
-                        'w-full lg:w-1/4 shrink-0 max-w-full px-4 bg-white lg:max-w-xs h-full pr-4 border-r flex flex-col pt-2 gap-4',
+                        'w-full lg:w-1/4 shrink-0 max-w-full px-4 bg-white lg:max-w-xs h-full pr-4 lg:pl-0 border-r flex flex-col pt-2 gap-4',
                         isPathTicketChatMainRoute ? 'flex' : 'hidden lg:flex'
                     )}
                 >
