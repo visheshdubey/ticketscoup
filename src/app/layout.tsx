@@ -1,5 +1,4 @@
 import './globals.css';
-
 import { Geist, Geist_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 import type { Metadata } from 'next';
@@ -19,12 +18,12 @@ const geistMono = Geist_Mono({
 });
 
 const satoshiVariable = localFont({
-    src: '../../public/assets/font/Satoshi-Variable.ttf',
+    src: '../../public/font/Satoshi-Variable.ttf',
     variable: '--font-satoshi-variable',
 });
 
 const clashGroteskVariable = localFont({
-    src: '../../public/assets/font/ClashGrotesk-Variable.ttf',
+    src: '../../public/font/ClashGrotesk-Variable.ttf',
     variable: '--font-clash-grotesk-variable',
 });
 
@@ -42,10 +41,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
     return (
         <html lang="en">
-            <body className={`${geistSans.variable} ${geistMono.variable} ${satoshiVariable.variable} ${clashGroteskVariable.variable} antialiased`}>
+            <body
+                className={`${geistSans.variable} ${geistMono.variable} ${satoshiVariable.variable} ${clashGroteskVariable.variable} antialiased`}
+            >
                 <SessionProvider session={session}>
-                <NotificationProvider>{children}</NotificationProvider>
-                <Toaster />
+                    <NotificationProvider>{children}</NotificationProvider>
+                    <Toaster />
                 </SessionProvider>
             </body>
         </html>
