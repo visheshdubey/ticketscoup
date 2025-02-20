@@ -11,6 +11,15 @@ export default {
         './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     ],
     theme: {
+        screens: {
+            '2xs': '470px',
+            xs: '640px',
+            sm: '768px',
+            md: '1024px',
+            lg: '1280px',
+            xl: '1440px',
+            '2xl': '1536px',
+        },
         extend: {
             colors: {
                 background: 'hsl(var(--background))',

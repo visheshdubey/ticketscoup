@@ -11,26 +11,24 @@ import { ticketStatus, ticketStatusColorMap, ticketStatusMap } from '@/lib/confi
 import { Button } from '@/components/ui/button';
 import { Column } from '@/features/overview/comps/temporary-table-dump/generic-table';
 import DashboardPageSection from '@/features/dashboard/core/comps/dashboard-page-section';
-import { DashboardPageTitle } from '@/features/dashboard/core/comps/dashboard-page-title';
 import { DashboardSectionTitle } from '@/features/dashboard/core/comps/dashboard-page-section-title';
 import { EllipsisVerticalIcon } from 'lucide-react';
 import { Invoice } from '@/features/dashboard/types/types';
 import { ListFilterIcon } from 'lucide-react';
 import MobileTable from '@/features/overview/comps/temporary-table-dump/mobile-table';
 import PageTableTemplate from '@/features/overview/comps/temporary-table-dump/page-table';
-import SelectComponent from '@/components/select-component';
-import StatsCard from '@/components/cards/stats-card';
 import { cn } from '@/lib/utils';
 import { invoices } from '@/lib/config';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { useIsMobileAndTab } from '@/hooks/use-mobile';
 import { useState } from 'react';
 import { widgets } from '@/lib/config';
+import { StatsContainer } from '../stats-container';
 
 export default function OverviewWrapper() {
     const [searchItem, setSearchItem] = useState('');
-    const isMobile = useIsMobile();
+    const isMobileAndTab = useIsMobileAndTab();
     const [showMore, setShowMore] = useState(false);
-    const showMoreButtonInMobile = isMobile && widgets.length > 0;
+    const showMoreButtonInMobile = isMobileAndTab && widgets.length > 0;
 
     let filtersApplied = true;
     let options = [
@@ -45,23 +43,6 @@ export default function OverviewWrapper() {
 
     const handleShowMore = () => {
         setShowMore(!showMore);
-    };
-
-    const WidgetList = (widgets: { title: string; value: string; growth: string }[]) => {
-        return (
-            <>
-                {widgets.slice(0, showMore ? widgets.length : 6).map((widget, index) => (
-                    <div
-                        key={widget.title}
-                        className={`rounded-[20px] min-w-[155px] md:min-w-[264px] md:h-[136px]  h-[92px] bg-white 
-                  ${index % 2 == 0 ? 'md:bg-[#E2EFFD]' : 'md:bg-[#EAECFC]'}
-                `}
-                    >
-                        <StatsCard info={widget} />
-                    </div>
-                ))}
-            </>
-        );
     };
 
     const handleSelectChange = (selectedValue: string) => {};
@@ -147,37 +128,17 @@ export default function OverviewWrapper() {
 
     return (
         <>
-            <DashboardPageSection>
-                <div className="bg-[#EAECFC] sm:bg-transparent">
-                    <div className="flex justify-between md:justify-start gap-5">
-                        <DashboardPageTitle>Overview</DashboardPageTitle>
-
-                        <div>
-                            <SelectComponent
-                                options={options}
-                                onChange={handleSelectChange}
-                                className="px-0 py-0 md:px-3 md:py-2 shadow-none border-none outline-none font-satoshi font-medium text-xs leading-[15px] text-[#A09B96] md:text-sm md:leading-[18px]"
-                            />
-                        </div>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 auto-rows-min md:flex md:flex-wrap pt-4 md:pt-6 gap-4">
-                        {WidgetList(widgets)}
-                    </div>
-                    {showMoreButtonInMobile && (
-                        <div className="flex justify-center items-center ">
-                            <Button
-                                variant={'link'}
-                                onClick={handleShowMore}
-                                className="pt-4 pb-3 font-satoshi !no-underline !underline-offset-0 font-medium text-xs leading-[17px] text-[#197BFF]"
-                            >
-                                {showMore ? 'Show Less' : 'Show More'}
-                            </Button>
-                        </div>
-                    )}
-                </div>
+            <DashboardPageSection className="bg-[#EAECFC] md:bg-white md:h-max md:pt-4 md:pb-5">
+                <StatsContainer
+                    handleSelectChange={handleSelectChange}
+                    handleShowMore={handleShowMore}
+                    showMore={showMore}
+                    showMoreButtonInMobile={showMoreButtonInMobile}
+                    options={options}
+                />
             </DashboardPageSection>
             <DashboardPageSection>
-                <div className="bg-white md:h-full flex flex-col mt-10 lg:mt-16">
+                <div className="bg-white md:h-full flex flex-col mt-10 lg:mt-2">
                     <div className="flex justify-between items-center">
                         <DashboardSectionTitle>Recent Tickets</DashboardSectionTitle>
 
