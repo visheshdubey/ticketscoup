@@ -5,6 +5,7 @@ import { FileInput } from '@/components/ui/file-input';
 import { Textarea } from '@/components/ui/textarea';
 import { TicketChatBoxHeader } from '@/features/ticket-chat/comps/ticket-chat-box-header';
 import { TicketChatCard } from '@/features/ticket-chat/comps/ticket-chat-card';
+import { isEmpty } from '@/lib/lodash-is-empty';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 
@@ -115,26 +116,27 @@ export default function TicketChatBox({ open, handleToggleSidebar }: Props) {
         >
             <TicketChatBoxHeader ticket={data} handleToggleSidebar={handleToggleSidebar} open={open} />
 
-            <div className="w-full h-full mx-auto overflow-y-scroll scrollbar-none flex flex-col gap-5 px-4 py-6">
+            <div className="w-full h-full max-h-[calc(100vh_-_220px)] mx-auto overflow-y-scroll scrollbar-none flex flex-col gap-5 px-4 py-6">
                 {chatMessages.map((chat) => (
                     <TicketChatCard key={chat.id} data={chat} />
                 ))}
             </div>
 
-            <div className="absolute bottom-0 lg:pb-4 lg:px-4 w-full">
-                <div className="w-full h-8 bg-white">
-                    {files && (
+            <div className="absolute bottom-0 md:pb-4 lg:px-4 w-full">
+                {!isEmpty(files) && (
+                    <div className="w-full h-8 bg-white">
                         <div className="text-sm text-gray-500 truncate max-w-xs">
-                            {Array.from(files)
+                            {/* TODO: Fix ??, should not be used here */}
+                            {Array.from(files ?? [])
                                 .map((file) => file.name)
                                 .join(', ')}
                         </div>
-                    )}
-                </div>
+                    </div>
+                )}
                 <div className="h-fit flex items-center relative border overflow-y-auto scrollbar-thin w-full rounded-lg bg-white lg:focus-within:outline lg:outline-1">
                     <Textarea
                         placeholder="Type your message here."
-                        className="shadow-none resize-none min-h-20 w-full  focus:outline-none focus:ring-none border-none focus:border-none"
+                        className="shadow-none resize-none min-h-20 max-w-4xl ring-0  focus-visible:ring-0 focus:ring-0 scrollbar-none outline-none p-4 w-full focus:outline-none border-none focus:border-none"
                     />
                     <div className="flex absolute right-4 gap-2 items-center">
                         {/* <Button variant={'ghost'}>
@@ -143,7 +145,9 @@ export default function TicketChatBox({ open, handleToggleSidebar }: Props) {
                          */}
 
                         <FileInput onFileInput={setFiles} />
-                        <Button>Send</Button>
+                        <Button className="font-satoshi font-medium text-sm bg-neutral-200 text-gray-950 hover:bg-neutral-300">
+                            Send
+                        </Button>
                     </div>
                 </div>
             </div>

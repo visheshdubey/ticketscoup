@@ -13,7 +13,7 @@ type Props = {
 export const TicketChaBoxHeaderActions = ({ open, handleTicketSidebar }: Props) => {
     return (
         <div className={cn('flex items-center', open ? 'gap-4' : 'gap-10')}>
-            <div className={cn('hidden xl:flex transition-all duration-300 transform', open ? 'gap-2' : 'gap-6')}>
+            <div className={cn('hidden xl:flex transition-all duration-300 transform', open ? '!hidden' : 'gap-6')}>
                 <TicketChatBoxHeaderActionsStatus />
                 <TicketChatBoxHeaderActionsType />
                 <TicketChatBoxHeaderActionsAssignedTo />
