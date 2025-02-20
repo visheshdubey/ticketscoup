@@ -1,6 +1,8 @@
-import { House, Store, Users, Contact, Bell, Settings } from 'lucide-react';
-import { Role } from '@prisma/client';
 import { AudioWaveform, Command } from 'lucide-react';
+import { Bell, Contact, House, Settings, Store, Users } from 'lucide-react';
+
+import { Invoice } from '@/features/dashboard/types/types';
+import { Role } from '@prisma/client';
 
 export function getMenuList(pathname: string) {
     return {
@@ -92,6 +94,28 @@ export const sidebarElementsMap: Record<PageKey, string> = {
     clients: 'Clients',
     staff: 'Staff',
     notifications: 'Notifications',
+};
+
+// TODO: Change the value of key when confirmed
+export const ticketStatus = {
+    IN_PROGRESS: 'IN_PROGRESS',
+    HOLD: 'HOLD',
+    DONE: 'DONE',
+    CANCELLED: 'CANCELLED',
+};
+
+export const ticketStatusMap: { [key: string]: string } = {
+    IN_PROGRESS: 'In-progress',
+    HOLD: 'On-Hold',
+    DONE: 'Done',
+    CANCELLED: 'Cancelled',
+};
+
+export const ticketStatusColorMap: { [key: string]: { bg: string; text: string } } = {
+    IN_PROGRESS: { bg: 'bg-[#197BFF]', text: 'text-[#197BFF]' },
+    HOLD: { bg: 'bg-[#CDBB15]', text: 'text-[#CDBB15]' },
+    DONE: { bg: 'bg-[#008434]', text: 'text-[#008434]' },
+    CANCELLED: { bg: 'bg-[#A09B96]', text: 'text-[#A09B96]' },
 };
 
 export function getTeamElements() {

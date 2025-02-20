@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar';
 
-export function NavUser({
+export function SidebarNavUser({
     user,
 }: {
     user: {
