@@ -1,7 +1,7 @@
 'use client';
 
 import DashboardContent from '@/features/dashboard/comps/dashboard-content';
-import { DashboardTitle } from '@/features/dashboard/comps/dashboard-title';
+import { DashboardPageTitle } from '@/features/dashboard/core/comps/dashboard-page-title';
 import { TicketList } from '@/features/ticket-chat/comps/ticket-list';
 import { cn } from '@/lib/utils';
 import { tickets } from '@/lib/config';
@@ -30,7 +30,7 @@ const TicketChatLayout = (props: Props) => {
                         isPathTicketChatMainRoute ? 'flex' : 'hidden lg:flex'
                     )}
                 >
-                    <DashboardTitle className="text-xl">Ticket Chat</DashboardTitle>
+                    <DashboardPageTitle className="text-xl">Ticket Chat</DashboardPageTitle>
                     <div className="flex flex-col gap-3">
                         <div className="w-full h-9 text-sm border rounded-md flex items-center px-4">Search</div>
                         <TicketList tickets={tickets} />

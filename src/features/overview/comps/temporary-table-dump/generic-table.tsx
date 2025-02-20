@@ -1,6 +1,8 @@
-import React from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+
+import React from 'react';
 import Spinner from '@/components/spinner';
+import { isEmpty } from '@/lib/lodash-is-empty';
 
 export interface Column<T> {
     key: keyof T | string;
@@ -37,7 +39,7 @@ export function GenericTable<T>({ columns, data }: GenericTableProps<T>) {
                     </TableRow>
                 )}
 
-                {data.length == 0 ? (
+                {isEmpty(data) ? (
                     <TableRow className="h-[400px] hover:bg-white">
                         <TableCell colSpan={columns.length} className="text-center">
                             <div className="flex items-center justify-center h-full">

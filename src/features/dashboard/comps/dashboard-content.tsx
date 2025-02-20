@@ -1,4 +1,4 @@
-import { DashboardTitle } from './dashboard-title';
+import { DashboardPageTitle } from '../core/comps/dashboard-page-title';
 import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -17,7 +17,7 @@ const DashboardContent = (props: Props) => {
             )}
         >
             <div className="flex justify-between lg:justify-start gap-5 w-full h-full">
-                {props.title && <DashboardTitle>{props.title}</DashboardTitle>}
+                {props.title && <DashboardPageTitle>{props.title}</DashboardPageTitle>}
                 {props.children}
             </div>
         </main>

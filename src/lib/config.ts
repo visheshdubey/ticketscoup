@@ -185,3 +185,54 @@ export const tickets = [
         unReadCount: 22,
     },
 ];
+
+export const invoices: Invoice[] = [
+    {
+        id: 'TK-1023',
+        client: 'John Doe',
+        type: 'GST Return',
+        status: 'IN_PROGRESS',
+        lastUpdated: 'Sun Aug 11 2024',
+        assginedTo: 'Vishesh Dubey',
+    },
+    {
+        id: 'TK-1024',
+        client: 'John Doe',
+        type: 'GST Return',
+        status: 'DONE',
+        lastUpdated: 'Sun Aug 11 2024',
+        assginedTo: 'Vishesh Dubey',
+    },
+    {
+        id: 'TK-1025',
+        client: 'John Doe',
+        type: 'GST Return',
+        status: 'HOLD',
+        lastUpdated: 'Sun Aug 11 2024',
+        assginedTo: 'Vishesh Dubey',
+    },
+    {
+        id: 'TK-1026',
+        client: 'John Doe',
+        type: 'GST Return',
+        status: 'CANCELLED',
+        lastUpdated: 'Sun Aug 11 2024',
+        assginedTo: 'Vishesh Dubey',
+    },
+    {
+        id: 'TK-1027',
+        client: 'John Doe',
+        type: 'GST Return',
+        status: 'IN_PROGRESS',
+        lastUpdated: 'Sun Aug 11 2024',
+        assginedTo: 'Vishesh Dubey',
+    },
+    {
+        id: 'TK-1028',
+        client: 'John Doe',
+        type: 'GST Return',
+        status: 'CANCELLED',
+        lastUpdated: 'Sun Aug 11 2024',
+        assginedTo: 'Vishesh Dubey',
+    },
+];
