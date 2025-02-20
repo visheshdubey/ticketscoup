@@ -2,9 +2,9 @@ import { Button } from '@/components/ui/button';
 import { DashboardPageTitle } from '@/features/dashboard/core/comps/dashboard-page-title';
 import { widgets } from '@/lib/config';
 import { StatDurationSelector } from './stats-duration-selector';
-import StatsCard from '@/components/cards/stats-card';
 
 type Props = {
+    WidgetList: (widgets: { title: string; value: string; growth: string }[]) => React.ReactNode;
     handleSelectChange: (selectedValue: string) => void;
     handleShowMore: () => void;
     showMore: boolean;
@@ -13,29 +13,13 @@ type Props = {
 };
 
 export function StatsContainer({
+    WidgetList,
     handleSelectChange,
     handleShowMore,
     showMore,
     showMoreButtonInMobile,
     options,
 }: Props) {
-    const WidgetList = (widgets: { title: string; value: string; growth: string }[]) => {
-        return (
-            <>
-                {widgets.slice(0, showMore ? widgets.length : 6).map((widget, index) => (
-                    <div
-                        key={widget.title}
-                        className={`rounded-[20px] min-w-[155px] md:min-w-[264px] md:h-[136px]  h-[92px] bg-white 
-                      ${index % 2 == 0 ? 'md:bg-[#E2EFFD]' : 'md:bg-[#EAECFC]'}
-                    `}
-                    >
-                        <StatsCard info={widget} />
-                    </div>
-                ))}
-            </>
-        );
-    };
-
     return (
         <>
             <div className="flex justify-between md:justify-start gap-5">

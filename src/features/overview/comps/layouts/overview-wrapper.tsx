@@ -17,6 +17,7 @@ import { Invoice } from '@/features/dashboard/types/types';
 import { ListFilterIcon } from 'lucide-react';
 import MobileTable from '@/features/overview/comps/temporary-table-dump/mobile-table';
 import PageTableTemplate from '@/features/overview/comps/temporary-table-dump/page-table';
+import StatsCard from '@/components/cards/stats-card';
 import { cn } from '@/lib/utils';
 import { invoices } from '@/lib/config';
 import { useIsMobileAndTab } from '@/hooks/use-mobile';
@@ -43,6 +44,24 @@ export default function OverviewWrapper() {
 
     const handleShowMore = () => {
         setShowMore(!showMore);
+    };
+
+    const WidgetList = (widgets: { title: string; value: string; growth: string }[]) => {
+        return (
+            <>
+                {widgets.slice(0, showMore ? widgets.length : 6).map((widget, index) => (
+                    <div
+                        key={widget.title}
+                        className={cn(
+                            'rounded-[20px] min-w-[155px] md:min-w-[264px] md:h-[136px]  h-[92px] bg-white',
+                            index % 2 == 0 ? 'md:bg-[#E2EFFD]' : 'md:bg-[#EAECFC]'
+                        )}
+                    >
+                        <StatsCard info={widget} />
+                    </div>
+                ))}
+            </>
+        );
     };
 
     const handleSelectChange = (selectedValue: string) => {};
@@ -130,6 +149,7 @@ export default function OverviewWrapper() {
         <>
             <DashboardPageSection className="bg-[#EAECFC] md:bg-white md:h-max md:pt-4 md:pb-5">
                 <StatsContainer
+                    WidgetList={WidgetList}
                     handleSelectChange={handleSelectChange}
                     handleShowMore={handleShowMore}
                     showMore={showMore}
