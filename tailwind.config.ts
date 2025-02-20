@@ -84,8 +84,12 @@ export default {
             width: {
                 '4.5': '1.125rem', //18px
             },
+            padding: {
+                '4.5': '1.125rem', // 18px
+                '7.5': '1.875rem', // 30px
+            },
         },
     },
 
-    plugins: [require('tailwindcss-animate')],
+    plugins: [require('tailwindcss-animate'), require('tailwind-scrollbar')],
 } satisfies Config;

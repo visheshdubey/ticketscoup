@@ -145,6 +145,47 @@ export function getTeamElements() {
     };
 }
 
+export const tickets = [
+    {
+        id: '1',
+        userName: 'Vishesh Dubey',
+        status: 'In-Progress',
+        type: 'GST',
+        unReadCount: 22,
+    },
+    {
+        id: '2',
+        userName: 'Vishesh Dubey',
+        status: 'In-Progress',
+        type: 'GST',
+        unReadCount: 22,
+    },
+    {
+        userInitials: 'CN',
+        id: '3',
+        userName: 'Vishesh Dubey',
+        status: 'In-Progress',
+        type: 'GST',
+        unReadCount: 22,
+    },
+    {
+        userInitials: 'CN',
+        id: '4',
+        userName: 'Vishesh Dubey',
+        status: 'In-Progress',
+        type: 'GST',
+        unReadCount: 22,
+    },
+    {
+        userInitials: 'CN',
+        id: '5',
+        userName: 'Vishesh Dubey',
+        status: 'In-Progress',
+        type: 'GST',
+        unReadCount: 22,
+    },
+];
+
 export const invoices: Invoice[] = [
     {
         id: 'TK-1023',
