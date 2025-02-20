@@ -123,10 +123,10 @@ export default function TicketChatBox({ open, handleToggleSidebar }: Props) {
             </div>
 
             <div className="absolute bottom-0 md:pb-4 lg:px-4 w-full">
-                {files && !isEmpty(files) && (
+                {!isEmpty(files) && (
                     <div className="w-full h-8 bg-white">
                         <div className="text-sm text-gray-500 truncate max-w-xs">
-                            {Array.from(files)
+                            {Array.from(files ?? [])
                                 .map((file) => file.name)
                                 .join(', ')}
                         </div>
