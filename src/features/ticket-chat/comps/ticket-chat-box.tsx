@@ -126,7 +126,7 @@ export default function TicketChatBox({ open, handleToggleSidebar }: Props) {
                 {!isEmpty(files) && (
                     <div className="w-full h-8 bg-white">
                         <div className="text-sm text-gray-500 truncate max-w-xs">
-                            // TODO: Fix ??, should not be used here
+                            {/* TODO: Fix ??, should not be used here */}
                             {Array.from(files ?? [])
                                 .map((file) => file.name)
                                 .join(', ')}
