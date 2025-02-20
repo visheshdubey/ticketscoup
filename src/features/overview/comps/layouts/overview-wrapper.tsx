@@ -53,8 +53,8 @@ export default function OverviewWrapper() {
                     <div
                         key={widget.title}
                         className={cn(
-                            'rounded-[20px] min-w-[155px] md:min-w-[264px] md:h-[136px]  h-[92px] bg-white',
-                            index % 2 == 0 ? 'md:bg-[#E2EFFD]' : 'md:bg-[#EAECFC]'
+                            'rounded-2.5xl min-w-[155px] h-[92px] md:min-w-[264px] md:h-[136px] bg-white',
+                            index % 2 === 0 ? 'md:bg-[#E2EFFD]' : 'md:bg-[#EAECFC]'
                         )}
                     >
                         <StatsCard info={widget} />

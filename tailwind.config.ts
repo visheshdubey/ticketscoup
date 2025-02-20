@@ -77,6 +77,7 @@ export default {
                 lg: 'var(--radius)',
                 md: 'calc(var(--radius) - 2px)',
                 sm: 'calc(var(--radius) - 4px)',
+                '2.5xl': '1.25rem', // 20px
             },
             fontFamily: {
                 satoshi: ['var(--font-satoshi-variable)'],

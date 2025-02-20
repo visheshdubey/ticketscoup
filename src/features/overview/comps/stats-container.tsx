@@ -24,7 +24,7 @@ export function StatsContainer({
         <>
             <div className="flex justify-between md:justify-start gap-5">
                 <DashboardPageTitle>Overview</DashboardPageTitle>
-                <StatDurationSelector options={options} handleSelectChange={handleSelectChange} />
+                <StatDurationSelector options={options} handleSelectChange={handleSelectChange} className="w-fit" />
             </div>
             <div className="grid grid-cols-1 2xs:grid-cols-2 auto-rows-min md:flex md:flex-wrap pt-4 md:pt-6 gap-4">
                 {WidgetList(widgets)}
