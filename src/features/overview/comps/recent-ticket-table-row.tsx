@@ -10,14 +10,14 @@ type Props = {
 
 export function RecentTicketTableRow({ invoice }: Props) {
     return (
-        <TableRow key={invoice.id} className="">
+        <TableRow key={invoice.id}>
             <TableCell className="w-[129px]   text-gray-900 pl-[19px] rounded-tl-lg rounded-bl-lg font-medium">
                 <a href={'#'} className="underline-offset-2 underline ">
                     {invoice.id}
                 </a>
             </TableCell>
-            <TableCell className="">{invoice.client}</TableCell>
-            <TableCell className="">{invoice.type}</TableCell>
+            <TableCell>{invoice.client}</TableCell>
+            <TableCell>{invoice.type}</TableCell>
             <TableCell className="text-left">
                 <div className="flex justify-start items-center gap-2">
                     <div
