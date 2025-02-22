@@ -10,6 +10,13 @@ export const dbUserFindByEmail = async (email: string) => {
     return user;
 };
 
+export const dbUserFindById = async ({ id }: { id: number }) => {
+    const user = await prisma.user.findUnique({
+        where: { id },
+    });
+    return user;
+};
+
 export const dbUserCreate = async (user: { email: string; name?: string | null; provider: AuthProvider }) => {
     const newUser = await prisma.user.create({
         data: {
