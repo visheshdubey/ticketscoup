@@ -8,6 +8,7 @@ const router = createRouter()
     .openapi(routes.updateTicketType, handlers.updateTicketType)
     .openapi(routes.deleteTicketType, handlers.deleteTicketType)
     .openapi(routes.listTicketTypes, handlers.listTicketTypes)
-    .openapi(routes.getTicketById, handlers.getTicketTypeById);
+    .openapi(routes.getTicketById, handlers.getTicketTypeById)
+    .openapi(routes.getTeamById, handlers.getTeamById);
 
 export default router;

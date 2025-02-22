@@ -53,3 +53,15 @@ export const GetTicketByIdResSchema = z.object({
     ticketName: z.string(),
     teamId: z.number(),
 });
+
+export const GetTeamByIdReqSchema = z.object({
+    ticketTypeId: z.string(),
+});
+
+export const GetTeamByIdResSchema = z.object({
+    id: z.number(),
+    name: z.string(),
+    createdAt: z.date(),
+    updatedAt: z.date(),
+    isActive: z.boolean(),
+});
