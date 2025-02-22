@@ -1,6 +1,6 @@
 import { UserProfile } from '../types/next-auth';
 import { auth } from '@/app/api/auth/[...nextauth]/route';
-import { get } from '@/lib/lodash-get';
+import { get } from '@/lib/utils/lodash-get';
 
 export const getSession = {
     client: (session: any) => {

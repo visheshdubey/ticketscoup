@@ -1,10 +1,13 @@
 import './globals.css';
+
 import { Geist, Geist_Mono } from 'next/font/google';
-import localFont from 'next/font/local';
+
 import type { Metadata } from 'next';
 import NotificationProvider from '@/components/providers/NotificationProvider';
+import ReactQueryProvider from '@/components/providers/react-query-provider';
 import { SessionProvider } from 'next-auth/react';
 import { Toaster } from '@/components/ui/sonner';
+import localFont from 'next/font/local';
 import nextAuthOptions from '@/features/auth/auth-options';
 
 const geistSans = Geist({
@@ -45,7 +48,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                 className={`${geistSans.variable} ${geistMono.variable} ${satoshiVariable.variable} ${clashGroteskVariable.variable} antialiased`}
             >
                 <SessionProvider session={session}>
-                    <NotificationProvider>{children}</NotificationProvider>
+                    <NotificationProvider>
+                        <ReactQueryProvider>{children}</ReactQueryProvider>
+                    </NotificationProvider>
                     <Toaster />
                 </SessionProvider>
             </body>

@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { Ticket } from '@/constants/index';
-import { getNameInitials } from '@/lib/get-name-initials';
-import { UserAvatar } from '@/components/user-avatar';
 import { TicketChatUnreadCounterBadge } from './ticket-chat-unread-counter-badge';
+import { UserAvatar } from '@/components/user-avatar';
+import { getNameInitials } from '@/lib/utils/get-name-initials';
 
 type TicketListItemProps = {
     ticket: Ticket;

@@ -2,7 +2,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 
 import React from 'react';
 import Spinner from '@/components/spinner';
-import { isEmpty } from '@/lib/lodash-is-empty';
+import { isEmpty } from '@/lib/utils/lodash-is-empty';
 
 export interface Column<T> {
     key: keyof T | string;

@@ -5,8 +5,8 @@ import { FileInput } from '@/components/ui/file-input';
 import { Textarea } from '@/components/ui/textarea';
 import { TicketChatBoxHeader } from '@/features/ticket-chat/comps/ticket-chat-box-header';
 import { TicketChatCard } from '@/features/ticket-chat/comps/ticket-chat-card';
-import { isEmpty } from '@/lib/lodash-is-empty';
 import { cn } from '@/lib/utils';
+import { isEmpty } from '@/lib/utils/lodash-is-empty';
 import { useState } from 'react';
 
 type Props = {
