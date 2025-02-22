@@ -3,7 +3,7 @@
 import { Ticket } from '@/constants/index';
 import { TicketChaBoxHeaderActions } from './ticket-chat-box-header-actions';
 import { TicketChatBoxHeaderUserDetail } from './ticket-chat-box-header-user-detail';
-import { getNameInitials } from '@/lib/get-name-initials';
+import { getNameInitials } from '@/lib/utils/get-name-initials';
 
 type TicketChatBoxHeaderProps = {
     ticket: Ticket;

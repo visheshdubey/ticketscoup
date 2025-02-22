@@ -1,8 +1,9 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { RecentTicketTableRow } from './recent-ticket-table-row';
+
 import { Invoice } from '@/features/dashboard/types/types';
+import { RecentTicketTableRow } from './recent-ticket-table-row';
 import Spinner from '@/components/spinner';
-import { isEmpty } from '@/lib/lodash-is-empty';
+import { isEmpty } from '@/lib/utils/lodash-is-empty';
 
 type Props = {
     invoices: Invoice[];

@@ -2,7 +2,7 @@ import { COOKIE_NAME_AUTH_JS_SESSION_TOKEN } from '@/constants/enums';
 import { createMiddleware } from 'hono/factory';
 import { dbUserFindByEmail } from '../lib/db/user';
 import { decode } from 'next-auth/jwt';
-import { get } from '@/lib/lodash-get';
+import { get } from '@/lib/utils/lodash-get';
 import { getCookie } from 'hono/cookie';
 
 export type ExtendedContextForUser = {

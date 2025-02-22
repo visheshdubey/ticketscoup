@@ -1,8 +1,8 @@
 import { TicketChat } from '@/constants/index';
-import { getNameInitials } from '@/lib/get-name-initials';
-import { cn } from '@/lib/utils';
 import { UserAvatar } from '@/components/user-avatar';
-import { formatTimestampToLocaleTime } from '@/lib/date-time';
+import { cn } from '@/lib/utils';
+import { formatTimestampToLocaleTime } from '@/lib/utils/date-time';
+import { getNameInitials } from '@/lib/utils/get-name-initials';
 
 type TicketChatCardProps = {
     data: TicketChat;

@@ -4,7 +4,13 @@ import { z } from 'zod';
 export const CreateTicketReqSchema = z.object({
     status: z.nativeEnum(TicketStatus),
     assignedTo: z.number().nullable(),
+    subscribers: z.array(z.string()),
+    chat: z.array(z.any()),
+    type: z.string(),
+    updatedBy: z.string(),
+    createdBy: z.string(),
     teamTicketTypeId: z.number(),
+    userId: z.number().nullable(),
 });
 
 export const CreateTicketResSchema = z.object({
