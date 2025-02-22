@@ -5,6 +5,7 @@ import {
     CreateTicketTypeResSchema,
     DeleteTicketTypeReqSchema,
     DeleteTicketTypeResSchema,
+    GetTeamByIdResSchema,
     GetTicketByIdResSchema,
     ListTicketTypesResSchema,
     UpdateTicketTypeReqSchema,
@@ -99,8 +100,26 @@ export const getTicketById = createRoute({
     },
 });
 
+export const getTeamById = createRoute({
+    path: '/team/{id}',
+    method: 'get',
+    request: {
+        params: IdParamsSchema,
+    },
+    tags,
+    responses: {
+        [HttpStatusCodes.OK]: jsonContent(GetTeamByIdResSchema, 'Team details'),
+        [HttpStatusCodes.UNPROCESSABLE_ENTITY]: jsonContent(
+            createErrorSchema(GetTeamByIdResSchema),
+            'The validation error(s)'
+        ),
+        [HttpStatusCodes.NOT_FOUND]: jsonContent(notFoundSchema, 'Team not found'),
+    },
+});
+
 export type CreateTicketTypeRoute = typeof createTicketType;
 export type UpdateTicketTypeRoute = typeof updateTicketType;
 export type DeleteTicketTypeRoute = typeof deleteTicketType;
 export type ListTicketTypesRoute = typeof listTicketTypes;
 export type GetTicketByIdRoute = typeof getTicketById;
+export type GetTeamByIdRoute = typeof getTeamById;

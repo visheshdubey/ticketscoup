@@ -47,3 +47,11 @@ export const dbTeamGetTicketTypeById = ({ ticketTypeId }: { ticketTypeId: string
         },
     });
 };
+
+export const dbTeamGetById = ({ teamId }: { teamId: string }) => {
+    return prisma.team.findUnique({
+        where: {
+            id: parseInt(teamId),
+        },
+    });
+};

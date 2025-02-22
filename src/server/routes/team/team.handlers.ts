@@ -4,6 +4,7 @@ import * as HttpStatusPhrases from 'stoker/http-status-phrases';
 import {
     CreateTicketTypeRoute,
     DeleteTicketTypeRoute,
+    GetTeamByIdRoute,
     GetTicketByIdRoute,
     ListTicketTypesRoute,
     UpdateTicketTypeRoute,
@@ -11,6 +12,7 @@ import {
 import {
     dbTeamCreateTicketType,
     dbTeamDeleteTicketType,
+    dbTeamGetById,
     dbTeamGetTicketTypeById,
     dbTeamListTicketTypes,
     dbTeamUpdateTicketType,
@@ -49,6 +51,22 @@ export const listTicketTypes: AppRouteHandler<ListTicketTypesRoute> = async (c) 
 export const getTicketTypeById: AppRouteHandler<GetTicketByIdRoute> = async (c) => {
     const req = c.req.valid('param');
     const ticketType = await dbTeamGetTicketTypeById({ ticketTypeId: req.id.toString() });
+
+    if (!ticketType) {
+        return c.json(
+            {
+                message: HttpStatusPhrases.NOT_FOUND,
+            },
+            HttpStatusCodes.NOT_FOUND
+        );
+    }
+
+    return c.json(ticketType, HttpStatusCodes.OK);
+};
+
+export const getTeamById: AppRouteHandler<GetTeamByIdRoute> = async (c) => {
+    const req = c.req.valid('param');
+    const ticketType = await dbTeamGetById({ teamId: req.id.toString() });
 
     if (!ticketType) {
         return c.json(
