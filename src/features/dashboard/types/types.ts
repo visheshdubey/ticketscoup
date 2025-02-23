@@ -29,3 +29,12 @@ export interface Staff {
     activeTickets: string;
     closedTickets: string;
 }
+
+export interface Client{
+    id: string;
+    name: string;
+    email: string;
+    totalTickets: string;
+    lastTicketOn: string;
+    joinedOn: string;
+}

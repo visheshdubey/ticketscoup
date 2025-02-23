@@ -1,7 +1,7 @@
 import { AudioWaveform, Command } from 'lucide-react';
 import { Bell, Contact, House, Settings, Store, Users } from 'lucide-react';
 
-import { Invoice, Staff } from '@/features/dashboard/types/types';
+import { Client, Invoice, Staff } from '@/features/dashboard/types/types';
 import { Role } from '@prisma/client';
 
 export function getMenuList(pathname: string) {
@@ -237,7 +237,7 @@ export const invoices: Invoice[] = [
     },
 ];
 
-export const staff :Staff[] = [
+export const staff: Staff[] = [
     {
         id: '1',
         name: 'Vishesh Dubey',
@@ -245,5 +245,16 @@ export const staff :Staff[] = [
         totalTickets: '10',
         activeTickets: '5',
         closedTickets: '5',
+    },
+];
+
+export const clients: Client[] = [
+    {
+        id: '1',
+        name: 'Vishesh Dubey',
+        email: 'visheshdubey@gmail.com',
+        totalTickets: '10',
+        lastTicketOn: 'Sun Aug 11 2024',
+        joinedOn: 'Sun Aug 11 2024',
     },
 ];
