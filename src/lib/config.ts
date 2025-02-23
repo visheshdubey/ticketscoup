@@ -1,7 +1,7 @@
 import { AudioWaveform, Command } from 'lucide-react';
 import { Bell, Contact, House, Settings, Store, Users } from 'lucide-react';
 
-import { Invoice } from '@/features/dashboard/types/types';
+import { Invoice, Staff } from '@/features/dashboard/types/types';
 import { Role } from '@prisma/client';
 
 export function getMenuList(pathname: string) {
@@ -234,5 +234,16 @@ export const invoices: Invoice[] = [
         status: 'CANCELLED',
         lastUpdated: 'Sun Aug 11 2024',
         assginedTo: 'Vishesh Dubey',
+    },
+];
+
+export const staff :Staff[] = [
+    {
+        id: '1',
+        name: 'Vishesh Dubey',
+        email: 'visheshdubey@gmail.com',
+        totalTickets: '10',
+        activeTickets: '5',
+        closedTickets: '5',
     },
 ];

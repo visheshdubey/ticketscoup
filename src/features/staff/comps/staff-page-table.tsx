@@ -1,15 +1,14 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-
-import { Invoice } from '@/features/dashboard/types/types';
-import { RecentTicketTableRow } from './recent-ticket-table-row';
+import { Staff } from '@/features/dashboard/types/types';
 import Spinner from '@/components/spinner';
 import { isEmpty } from '@/lib/utils/lodash-is-empty';
+import { StaffPageTableRow } from './staff-page-table-row';
 
 type Props = {
-    invoices: Invoice[];
+    staff: Staff[];
 };
 
-export default function RecentTicketTable({ invoices }: Props) {
+export function StaffPageTable({ staff }: Props) {
     return (
         <Table>
             <TableHeader>
@@ -17,23 +16,21 @@ export default function RecentTicketTable({ invoices }: Props) {
                     <TableHead className="w-[129px] text-sm leading-[18px] font-medium text-gray-900 pl-[19px] rounded-tl-lg rounded-bl-lg">
                         ID
                     </TableHead>
-                    <TableHead className="w-[194px] text-sm leading-[18px] font-medium  text-gray-900">
-                        Client
-                    </TableHead>
-                    <TableHead className="w-[113px] text-sm leading-[18px] font-medium text-gray-900">Type</TableHead>
+                    <TableHead className="w-[194px] text-sm leading-[18px] font-medium  text-gray-900">Name</TableHead>
+                    <TableHead className="w-[113px] text-sm leading-[18px] font-medium  text-gray-900">Email</TableHead>
                     <TableHead className="w-[113px] text-sm leading-[18px] font-medium  text-gray-900">
-                        Status
+                        Total Tickets
                     </TableHead>
-                    <TableHead className="w-[113px] text-sm leading-[18px] font-medium  text-gray-900">
-                        Last Updated
+                    <TableHead className="w-[113px] text-sm leading-[18px] font-medium  text-gray-900 ">
+                        Active Tickets
                     </TableHead>
                     <TableHead className="w-[113px] text-sm leading-[18px] font-medium  text-gray-900 rounded-tr-lg rounded-br-lg">
-                        Assigned To
+                        Closed Tickets
                     </TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {!invoices && (
+                {!staff && (
                     <TableRow className="h-[400px] hover:bg-white">
                         <TableCell colSpan={6} className="text-center">
                             <div className="flex items-center justify-center h-full">
@@ -42,16 +39,14 @@ export default function RecentTicketTable({ invoices }: Props) {
                         </TableCell>
                     </TableRow>
                 )}
-                {isEmpty(invoices) ? (
+                {isEmpty(staff) ? (
                     <TableRow className="h-[400px] hover:bg-white">
                         <TableCell colSpan={6} className="text-center">
-                            <div className="flex items-center justify-center h-full">
-                                <span className="font-satoshi text-gray-900 text-sm">No Tickets to show.</span>
-                            </div>
+                            <span className="font-satoshi text-gray-900 text-sm">No Tickets to show.</span>
                         </TableCell>
                     </TableRow>
                 ) : (
-                    invoices.map((invoice) => <RecentTicketTableRow key={invoice.id} invoice={invoice} />)
+                    staff.map((staff) => <StaffPageTableRow key={staff.id} staff={staff} />)
                 )}
             </TableBody>
         </Table>

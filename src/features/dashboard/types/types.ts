@@ -20,3 +20,12 @@ export interface Invoice {
     lastUpdated: string;
     assginedTo: string;
 }
+
+export interface Staff {
+    id: string;
+    name: string;
+    email: string;
+    totalTickets: string;
+    activeTickets: string;
+    closedTickets: string;
+}
