@@ -1,3 +1,16 @@
+# Ticketscoup | Effortlessely create client-tickets (WIP)
+
+A Next.js full-stack app, built on top off, honoJs, Prisma, Postgres, FCM, Tanstack-Query, Zustand and etc.
+
+It provides a chat like interface where customers can directly create tickets, and your team can manage those tickets. Chat-like UI is intentional in order to maintain UI familarity for CLient.
+
+# Screenshots
+![image](https://github.com/user-attachments/assets/c71aecff-a825-43e2-915a-5f017f19494e)
+![image](https://github.com/user-attachments/assets/82cf453b-67b2-4f7e-8e1a-b218805aaa0b)
+![image](https://github.com/user-attachments/assets/420ba822-9f61-46fb-ae23-85e677082397)
+
+
+# NextJs Default Readme
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
