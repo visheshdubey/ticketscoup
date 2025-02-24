@@ -8,6 +8,7 @@ It provides a chat like interface where customers can directly create tickets, a
 ![image](https://github.com/user-attachments/assets/c71aecff-a825-43e2-915a-5f017f19494e)
 ![image](https://github.com/user-attachments/assets/82cf453b-67b2-4f7e-8e1a-b218805aaa0b)
 ![image](https://github.com/user-attachments/assets/420ba822-9f61-46fb-ae23-85e677082397)
+![image](https://github.com/user-attachments/assets/9cd989d6-500c-4a40-b420-0e2bc3fbe08e)
 
 
 # NextJs Default Readme
