@@ -4,14 +4,12 @@ import prisma from './prisma';
 export type DBTicketCreateFn = ({
     status,
     assignedTo,
-    subscribers,
     updatedBy,
     createdBy,
     teamTicketTypeId,
 }: {
     status: TicketStatus;
     assignedTo: number | null;
-    subscribers: string[];
     updatedBy: string;
     createdBy: string;
     teamTicketTypeId: number;
@@ -44,7 +42,6 @@ export type DBTicketGetByIdFn = ({ ticketId }: { ticketId: string }) => Promise<
 export const dbTicketCreate: DBTicketCreateFn = ({
     status,
     assignedTo,
-    subscribers,
     updatedBy,
     createdBy,
     teamTicketTypeId,
@@ -53,7 +50,6 @@ export const dbTicketCreate: DBTicketCreateFn = ({
         data: {
             status,
             assignedTo: assignedTo ? { connect: { id: assignedTo } } : undefined,
-            subscribers,
             type: { connect: { id: teamTicketTypeId } },
             updatedBy,
             createdBy,

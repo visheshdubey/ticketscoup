@@ -11,16 +11,16 @@ import {
 import { dbTicketCreate, dbTicketDelete, dbTicketGetById, dbTicketList, dbTicketUpdate } from '@/server/lib/db/ticket';
 
 import { AppRouteHandler } from '@/server/types';
-
+import { get } from '@/lib/utils/lodash-get';
 export const createTicket: AppRouteHandler<CreateTicketRoute> = async (c) => {
     const req = c.req.valid('json');
+    const userId = get(c, 'var.user.id');
     const ticket = await dbTicketCreate({
         status: req.status,
         assignedTo: req.assignedTo,
-        subscribers: req.subscribers,
         teamTicketTypeId: req.teamTicketTypeId,
-        updatedBy: req.updatedBy,
-        createdBy: req.createdBy,
+        updatedBy: userId,
+        createdBy: userId,
     });
 
     return c.json(ticket, HttpStatusCodes.OK);
