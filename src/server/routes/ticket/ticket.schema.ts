@@ -1,5 +1,6 @@
 import { TicketStatus } from '@prisma/client';
 import { z } from 'zod';
+import { TicketSchema } from '@/server/lib/schemas';
 
 export const CreateTicketReqSchema = z.object({
     status: z.nativeEnum(TicketStatus),
@@ -7,18 +8,7 @@ export const CreateTicketReqSchema = z.object({
     teamTicketTypeId: z.number(),
 });
 
-export const CreateTicketResSchema = z.object({
-    id: z.number(),
-    status: z.nativeEnum(TicketStatus),
-    assignedTo: z.number().nullable(),
-    subscribers: z.array(z.string()),
-    chat: z.array(z.any()),
-    type: z.string(),
-    updatedBy: z.string(),
-    createdBy: z.string(),
-    teamTicketTypeId: z.number(),
-    userId: z.number().nullable(),
-});
+export const CreateTicketResSchema = TicketSchema;
 
 export const UpdateTicketReqSchema = z.object({
     ticketId: z.string(),
@@ -30,56 +20,10 @@ export const UpdateTicketReqSchema = z.object({
     teamTicketTypeId: z.number(),
 });
 
-export const UpdateTicketResSchema = z.object({
-    id: z.number(),
-    status: z.nativeEnum(TicketStatus),
-    assignedTo: z.number().nullable(),
-    subscribers: z.array(z.string()),
-    chat: z.array(z.any()),
-    type: z.string(),
-    updatedBy: z.string(),
-    createdBy: z.string(),
-    teamTicketTypeId: z.number(),
-    userId: z.number().nullable(),
-});
+export const UpdateTicketResSchema = TicketSchema;
 
-export const DeleteTicketResSchema = z.object({
-    id: z.number(),
-    status: z.nativeEnum(TicketStatus),
-    assignedTo: z.number().nullable(),
-    subscribers: z.array(z.string()),
-    chat: z.array(z.any()),
-    type: z.string(),
-    updatedBy: z.string(),
-    createdBy: z.string(),
-    teamTicketTypeId: z.number(),
-    userId: z.number().nullable(),
-});
+export const DeleteTicketResSchema = TicketSchema;
 
-export const ListTicketsResSchema = z.array(
-    z.object({
-        id: z.number(),
-        status: z.nativeEnum(TicketStatus),
-        assignedTo: z.number().nullable(),
-        subscribers: z.array(z.string()),
-        chat: z.array(z.any()),
-        type: z.string(),
-        updatedBy: z.string(),
-        createdBy: z.string(),
-        teamTicketTypeId: z.number(),
-        userId: z.number().nullable(),
-    })
-);
+export const ListTicketsResSchema = z.array(TicketSchema);
 
-export const GetTicketByIdResSchema = z.object({
-    id: z.number(),
-    status: z.nativeEnum(TicketStatus),
-    assignedTo: z.number().nullable(),
-    subscribers: z.array(z.string()),
-    chat: z.array(z.any()),
-    type: z.string(),
-    updatedBy: z.string(),
-    createdBy: z.string(),
-    teamTicketTypeId: z.number(),
-    userId: z.number().nullable(),
-});
+export const GetTicketByIdResSchema = TicketSchema;
