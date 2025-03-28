@@ -35,20 +35,21 @@ enum NotificationChannel {
 }
 
 model User {
-    id              Int               @id @default(autoincrement())
-    email           String            @unique
-    name            String?
-    phone           String?
-    provider        String?
-    isBlocked       Boolean           @default(false)
-    isEmailVerified Boolean           @default(false)
-    fcmToken        String?
-    avatar          String?
-    role            Role              @default(CLIENT)
-    createdAt       DateTime          @default(now())
-    updatedAt       DateTime          @updatedAt
-    TeamUserProfile TeamUserProfile[]
-    Ticket          Ticket[]
+    id               Int                @id @default(autoincrement())
+    email            String             @unique
+    name             String?
+    phone            String?
+    provider         String?
+    isBlocked        Boolean            @default(false)
+    isEmailVerified  Boolean            @default(false)
+    fcmToken         String?
+    avatar           String?
+    role             Role               @default(CLIENT)
+    createdAt        DateTime           @default(now())
+    updatedAt        DateTime           @updatedAt
+    TeamUserProfile  TeamUserProfile[]
+    Ticket           Ticket[]
+    UserNotification UserNotification[]
 }
 
 model Team {
@@ -111,14 +112,25 @@ model TicketChat {
 }
 
 model Notification {
-    id        Int                   @id @default(autoincrement())
-    channels  NotificationChannel[] @default([PUSH])
-    content   String?
-    image     String?
-    audience  String[]
-    eventType String
-    team      Team                  @relation(fields: [teamId], references: [id])
-    createdAt DateTime              @default(now())
-    updatedAt DateTime              @updatedAt
-    teamId    Int
+    id               Int                   @id @default(autoincrement())
+    channels         NotificationChannel[] @default([PUSH])
+    content          String?
+    image            String?
+    sender           String?
+    audience         String[]
+    pushAction       String?
+    eventType        String
+    team             Team                  @relation(fields: [teamId], references: [id])
+    createdAt        DateTime              @default(now())
+    updatedAt        DateTime              @updatedAt
+    teamId           Int
+    UserNotification UserNotification[]
+}
+
+model UserNotification {
+    id             Int          @id @default(autoincrement())
+    user           User         @relation(fields: [userId], references: [id])
+    notification   Notification @relation(fields: [notificationId], references: [id])
+    userId         Int
+    notificationId Int
 }
