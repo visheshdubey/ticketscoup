@@ -15,7 +15,6 @@ export const UserSchema = z.object({
   isEmailVerified: z.boolean(),
   fcmToken: z.string().nullable(),
   avatar: z.string().nullable(),
-  role: RoleSchema,
   createdAt: z.date(),
   updatedAt: z.date(),
 });
@@ -41,6 +40,7 @@ export const TeamUserProfileSchema = z.object({
   userId: z.number().int(),
   teamId: z.number().int(),
   role: RoleSchema,
+  notes: z.string().nullable(),
   createdAt: z.date(),
   updatedAt: z.date(),
 });
@@ -48,11 +48,11 @@ export const TeamUserProfileSchema = z.object({
 export const TicketSchema = z.object({
   id: z.number().int(),
   status: TicketStatusSchema,
-  subscribers: z.array(z.string()),
   updatedBy: z.string(),
   createdBy: z.string(),
   teamTicketTypeId: z.number().int(),
   userId: z.number().int().nullable(),
+  clientId: z.number().int().nullable(),
   createdAt: z.date(),
   updatedAt: z.date(),
 });
@@ -61,7 +61,7 @@ export const TicketChatSchema = z.object({
   id: z.number().int(),
   text: z.string().nullable(),
   attachment: z.array(z.string()),
-  updatedBy: z.string(),
+  userId: z.number().int(),
   shouldNotifyOnEmail: z.boolean(),
   ticketId: z.number().int().nullable(),
   createdAt: z.date(),

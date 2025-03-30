@@ -8,7 +8,13 @@ import {
     ListTicketsRoute,
     UpdateTicketRoute,
 } from './ticket.routes';
-import { dbTicketCreate, dbTicketDelete, dbTicketGetById, dbTicketList, dbTicketUpdate } from '@/server/lib/db/ticket';
+import {
+    dbTicketCreate,
+    dbTicketDelete,
+    dbTicketGetById,
+    dbTeamTicketList,
+    dbTicketUpdate,
+} from '@/server/lib/db/ticket';
 
 import { AppRouteHandler } from '@/server/types';
 import { get } from '@/lib/utils/lodash-get';
@@ -19,16 +25,28 @@ export const createTicket: AppRouteHandler<CreateTicketRoute> = async (c) => {
         status: req.status,
         assignedTo: req.assignedTo,
         teamTicketTypeId: req.teamTicketTypeId,
-        updatedBy: userId,
-        createdBy: userId,
+        updatedBy: userId.toString(),
+        createdBy: userId.toString(),
+        teamId: req.teamId,
+        clientId: req.clientId,
     });
 
     return c.json(ticket, HttpStatusCodes.OK);
 };
 
 export const updateTicket: AppRouteHandler<UpdateTicketRoute> = async (c) => {
+    console.log('updateTicket');
     const req = c.req.valid('json');
-    const ticket = await dbTicketUpdate(req);
+    const reqParams = c.req.valid('param');
+    const userId = get(c, 'var.user.id');
+    const ticket = await dbTicketUpdate({
+        assignedTo: get(req, 'assignedTo'),
+        clientId: get(req, 'clientId'),
+        teamTicketTypeId: get(req, 'teamTicketTypeId'),
+        updatedBy: userId.toString(),
+        status: get(req, 'status'),
+        ticketId: reqParams.id.toString(),
+    });
 
     return c.json(ticket, HttpStatusCodes.OK);
 };
@@ -42,7 +60,7 @@ export const deleteTicket: AppRouteHandler<DeleteTicketRoute> = async (c) => {
 
 export const listTickets: AppRouteHandler<ListTicketsRoute> = async (c) => {
     const req = c.req.valid('param');
-    const tickets = await dbTicketList({ teamTicketTypeId: req.id.toString() });
+    const tickets = await dbTeamTicketList({ teamId: req.id.toString() });
 
     return c.json(tickets, HttpStatusCodes.OK);
 };

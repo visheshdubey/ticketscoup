@@ -6,18 +6,21 @@ export const CreateTicketReqSchema = z.object({
     status: z.nativeEnum(TicketStatus),
     assignedTo: z.number().nullable(),
     teamTicketTypeId: z.number(),
+    teamId: z.number(),
+    clientId: z.number().nullable(),
+    updatedBy: z.string(),
+    createdBy: z.string(),
 });
 
 export const CreateTicketResSchema = TicketSchema;
 
 export const UpdateTicketReqSchema = z.object({
-    ticketId: z.string(),
-    status: z.nativeEnum(TicketStatus),
-    assignedTo: z.number().nullable(),
-    subscribers: z.array(z.string()),
-    chat: z.array(z.any()),
-    updatedBy: z.string(),
-    teamTicketTypeId: z.number(),
+    status: z.nativeEnum(TicketStatus).optional(),
+    assignedTo: z.number().nullable().optional(),
+    clientId: z.number().nullable().optional(),
+    updatedBy: z.string().optional(),
+    teamTicketTypeId: z.number().optional(),
+    teamId: z.number().optional(),
 });
 
 export const UpdateTicketResSchema = TicketSchema;

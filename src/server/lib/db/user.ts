@@ -10,10 +10,28 @@ export const dbUserFindByEmail = async (email: string) => {
     return user;
 };
 
+export const dbUserFindByEmailWithProfile = async (email: string) => {
+    const user = await prisma.user.findUnique({
+        where: { email },
+        include: { TeamUserProfile: true },
+    });
+
+    return user;
+};
+
 export const dbUserFindById = async ({ id }: { id: number }) => {
     const user = await prisma.user.findUnique({
         where: { id },
     });
+    return user;
+};
+
+export const dbUserFindByIdWithProfile = async ({ id }: { id: number }) => {
+    const user = await prisma.user.findUnique({
+        where: { id },
+        include: { TeamUserProfile: true },
+    });
+    
     return user;
 };
 

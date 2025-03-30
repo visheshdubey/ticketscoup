@@ -4,7 +4,17 @@ export const dbTeamCreate = () => {
     //TODO: Use this in seed.ts
 };
 
-export const dbTeamCreateTicketType = ({ title, teamId }: { title: string; teamId: string }) => {
+export const dbTeamCreateTicketType = async ({ title, teamId }: { title: string; teamId: string }) => {
+    const team = await prisma.team.findUnique({
+        where: {
+            id: parseInt(teamId)
+        }
+    });
+
+    if (!team) {
+        throw new Error(`Team with id ${teamId} not found`);
+    }
+
     return prisma.teamTicketType.create({
         data: {
             ticketName: title,

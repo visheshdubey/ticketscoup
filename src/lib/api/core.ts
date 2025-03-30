@@ -39,6 +39,7 @@ export const fetchBase: FetchBaseFn = async ({ method, path, data, jwt }) => {
 export const client = {
     get: async ({ path, jwt }: GetParams) => fetchBase({ method: 'GET', path, jwt }),
     post: async ({ path, data, jwt }: PostParams) => fetchBase({ method: 'POST', path, data, jwt }),
+    put: async ({ path, data, jwt }: PatchParams) => fetchBase({ method: 'PUT', path, data, jwt }),
     patch: async ({ path, data, jwt }: PatchParams) => fetchBase({ method: 'PATCH', path, data, jwt }),
     delete: async ({ path, jwt }: DeleteParams) => fetchBase({ method: 'DELETE', path, jwt }),
 };

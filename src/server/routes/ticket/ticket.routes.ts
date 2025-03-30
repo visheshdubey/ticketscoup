@@ -34,10 +34,11 @@ export const createTicket = createRoute({
 });
 
 export const updateTicket = createRoute({
-    path: '/ticket',
+    path: '/ticket/{id}',
     method: 'put',
     request: {
         body: jsonContentRequired(UpdateTicketReqSchema, 'Update ticket request'),
+        params: IdParamsSchema,
     },
     tags,
     responses: {

@@ -1,6 +1,6 @@
 import { COOKIE_NAME_AUTH_JS_SESSION_TOKEN } from '@/constants/enums';
 import { createMiddleware } from 'hono/factory';
-import { dbUserFindByEmail } from '../lib/db/user';
+import { dbUserFindByEmailWithProfile } from '@/server/lib/db/user';
 import { decode } from 'next-auth/jwt';
 import { get } from '@/lib/utils/lodash-get';
 import { getCookie } from 'hono/cookie';
@@ -31,9 +31,11 @@ export const authMiddleware = createMiddleware<AuthMiddleware>(async (c, next) =
         await next();
         return;
     }
-    const user = await dbUserFindByEmail(userEmail);
 
-    c.set('user', { id: get(user, 'id'), name: get(user, 'email'), role: get(user, 'role') });
+    // TODO: Store teamId in the session token, and use it here to get the user's profile
+    const user = await dbUserFindByEmailWithProfile(userEmail);
+
+    c.set('user', { id: get(user, 'id'), name: get(user, 'email'), role: get(user, 'TeamUserProfile[0].role') });
 
     await next();
 });

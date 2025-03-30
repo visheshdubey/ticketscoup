@@ -44,12 +44,13 @@ model User {
     isEmailVerified  Boolean            @default(false)
     fcmToken         String?
     avatar           String?
-    role             Role               @default(CLIENT)
     createdAt        DateTime           @default(now())
     updatedAt        DateTime           @updatedAt
     TeamUserProfile  TeamUserProfile[]
-    Ticket           Ticket[]
     UserNotification UserNotification[]
+    AssignedTo       Ticket[]           @relation("AssignedTo")
+    Client           Ticket[]           @relation("Client")
+    TicketChat       TicketChat[]
 }
 
 model Team {
@@ -58,9 +59,11 @@ model Team {
     isActive        Boolean           @default(false)
     createdAt       DateTime          @default(now())
     updatedAt       DateTime          @updatedAt
+    domain          String?
     TeamTicketType  TeamTicketType[]
     TeamUserProfile TeamUserProfile[]
     Notification    Notification[]
+    Ticket          Ticket[]
 }
 
 model TeamTicketType {
@@ -78,6 +81,7 @@ model TeamUserProfile {
     user      User     @relation(fields: [userId], references: [id])
     team      Team     @relation(fields: [teamId], references: [id])
     role      Role     @default(CLIENT)
+    notes     String?
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     userId    Int
@@ -87,32 +91,37 @@ model TeamUserProfile {
 model Ticket {
     id               Int            @id @default(autoincrement())
     status           TicketStatus   @default(TODO)
-    assignedTo       User?          @relation(fields: [userId], references: [id])
-    subscribers      String[]
+    assignedTo       User?          @relation("AssignedTo", fields: [userId], references: [id])
+    client           User?          @relation("Client", fields: [clientId], references: [id])
     chat             TicketChat[]
     type             TeamTicketType @relation(fields: [teamTicketTypeId], references: [id])
+    team             Team           @relation(fields: [teamId], references: [id])
     updatedBy        String
     createdBy        String
     createdAt        DateTime       @default(now())
     updatedAt        DateTime       @updatedAt
     teamTicketTypeId Int
     userId           Int?
+    clientId         Int?
+    teamId           Int
 }
 
 model TicketChat {
     id                  Int      @id @default(autoincrement())
     text                String?
     attachment          String[]
-    updatedBy           String //User Id
+    updatedBy           User     @relation(fields: [userId], references: [id])
     shouldNotifyOnEmail Boolean  @default(false)
     createdAt           DateTime @default(now())
     updatedAt           DateTime @updatedAt
     Ticket              Ticket?  @relation(fields: [ticketId], references: [id])
     ticketId            Int?
+    userId              Int
 }
 
 model Notification {
     id               Int                   @id @default(autoincrement())
+    team             Team                  @relation(fields: [teamId], references: [id])
     channels         NotificationChannel[] @default([PUSH])
     content          String?
     image            String?
@@ -120,7 +129,6 @@ model Notification {
     audience         String[]
     pushAction       String?
     eventType        String
-    team             Team                  @relation(fields: [teamId], references: [id])
     createdAt        DateTime              @default(now())
     updatedAt        DateTime              @updatedAt
     teamId           Int
