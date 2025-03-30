@@ -6,12 +6,13 @@ import routeIndex from '@/server/routes/index.routes';
 import team from '@/server/routes/team/index.team';
 import ticket from '@/server/routes/ticket/index.ticket';
 import user from '@/server/routes/user/index.user';
+import ticketChat from '@/server/routes/ticket-chat/ticket-chat.index';
 
 const app = createApp();
 
 configureOpenAPI(app);
 
-const routes = [routeIndex, user, auth, notification, team, ticket] as const;
+const routes = [routeIndex, user, auth, notification, team, ticket, ticketChat] as const;
 
 routes.forEach((route) => {
     app.route('/', route);
